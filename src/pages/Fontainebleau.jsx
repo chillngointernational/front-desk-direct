@@ -242,7 +242,7 @@ export default function Fontainebleau() {
             </section>
 
             <section id="about" style={{ background: '#faf8f5', borderTop: '1px solid #eae6e0' }}>
-                <W className="py-12">
+                <W style={{ paddingTop: 48, paddingBottom: 48 }}>
                     <h2 style={{ fontSize: 22, fontWeight: 600, margin: '0 0 28px', color: '#1a1a1a' }}>About {H}</h2>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10">
                         <div className="md:col-span-2" style={{ fontSize: 14, lineHeight: 1.9, color: '#555' }}>
@@ -267,14 +267,14 @@ export default function Fontainebleau() {
                                     </tbody>
                                 </table>
                             </div>
-                            <a href={`tel:${PHONE}`} className="no-underline hover:opacity-90 transition-opacity" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, width: '100%', background: '#1a3a5c', color: '#fff', fontSize: 12, fontWeight: 700, letterSpacing: '.08em', textTransform: 'uppercase', padding: '14px 0', borderRadius: 4 }}><PhIco size={14} /> Reserve by Phone</a>
+                            <a href={`tel:${PHONE}`} className="no-underline hover:opacity-90 transition-opacity" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, width: '100%', background: '#1a3a5c', color: '#fff', fontSize: 12, fontWeight: 700, letterSpacing: '.08em', textTransform: 'uppercase', padding: '14px 0', borderRadius: 4, marginBottom: 8 }}><PhIco size={14} /> Reserve by Phone</a>
                         </div>
                     </div>
                 </W>
             </section>
 
             <section style={{ borderTop: '1px solid #eae6e0' }}>
-                <W className="py-12">
+                <W style={{ paddingTop: 48, paddingBottom: 48 }}>
                     <h2 style={{ fontSize: 22, fontWeight: 600, margin: '0 0 24px', color: '#1a1a1a' }}>Amenities</h2>
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-10 gap-y-4">
                         {AMENITIES.map((a, i) => (<div key={i} style={{ display: 'flex', alignItems: 'center', gap: 10, fontSize: 14, color: '#555', padding: '5px 0' }}><ChkIco /> {a}</div>))}
