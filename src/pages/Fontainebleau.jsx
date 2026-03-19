@@ -85,35 +85,35 @@ export default function Fontainebleau() {
 
             {/* Top bar */}
             <div style={{ background: '#1a3a5c' }}>
-                <W className="flex items-center justify-between py-2" style={{ color: 'rgba(255,255,255,.6)', fontSize: 11 }}>
+                <W className="flex items-center justify-between" style={{ color: 'rgba(255,255,255,.6)', fontSize: 12, paddingTop: 10, paddingBottom: 10 }}>
                     <div className="flex items-center gap-2">
-                        <span style={{ color: '#fff', fontWeight: 700 }}>Front Desk Direct</span>
+                        <span style={{ color: '#fff', fontWeight: 700, fontSize: 13 }}>Front Desk Direct</span>
                         <span style={{ opacity: .3 }}>|</span>
                         <span className="hidden sm:inline">Specialists in {H} reservations</span>
                         <span className="sm:hidden">Specialists in {H}</span>
                     </div>
-                    <a href={`tel:${PHONE}`} className="hidden md:flex items-center gap-2 no-underline" style={{ color: '#ffd666', fontWeight: 700, fontSize: 13 }}>
-                        <PhIco size={14} color="#ffd666" /> {PH}
+                    <a href={`tel:${PHONE}`} className="hidden md:flex items-center gap-2 no-underline" style={{ color: '#ffd666', fontWeight: 700, fontSize: 14 }}>
+                        <PhIco size={15} color="#ffd666" /> {PH}
                     </a>
                 </W>
             </div>
 
-            {/* Nav */}
-            <nav className="sticky top-0 z-50" style={{ background: '#fff', borderBottom: '1px solid #e8e4de', boxShadow: '0 1px 3px rgba(0,0,0,.04)' }}>
-                <W className="flex items-center justify-between py-2.5">
-                    <a href="/" className="no-underline flex items-center gap-2.5">
-                        <div style={{ width: 30, height: 30, background: '#1a3a5c', borderRadius: 3, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#ffd666', fontFamily: 'Georgia,serif', fontWeight: 'bold', fontSize: 16 }}>F</div>
+            {/* Nav - BIGGER, more professional */}
+            <nav className="sticky top-0 z-50" style={{ background: '#fff', borderBottom: '1px solid #e8e4de', boxShadow: '0 1px 4px rgba(0,0,0,.06)' }}>
+                <W className="flex items-center justify-between" style={{ paddingTop: 14, paddingBottom: 14 }}>
+                    <a href="/" className="no-underline flex items-center gap-3">
+                        <div style={{ width: 40, height: 40, background: '#1a3a5c', borderRadius: 4, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#ffd666', fontFamily: 'Georgia,serif', fontWeight: 'bold', fontSize: 20 }}>F</div>
                         <div>
-                            <div style={{ fontSize: 9, letterSpacing: '.2em', textTransform: 'uppercase', fontWeight: 700, color: '#aaa' }}>Front Desk Direct</div>
-                            <div style={{ fontSize: 14, fontWeight: 600, color: '#1a3a5c' }}>Hotel Reservations</div>
+                            <div style={{ fontSize: 10, letterSpacing: '.18em', textTransform: 'uppercase', fontWeight: 700, color: '#aaa', lineHeight: 1.2 }}>Front Desk Direct</div>
+                            <div style={{ fontSize: 17, fontWeight: 600, color: '#1a3a5c', lineHeight: 1.3 }}>Hotel Reservations</div>
                         </div>
                     </a>
-                    <div className="flex items-center gap-3 md:gap-5">
+                    <div className="flex items-center gap-4 md:gap-6">
                         {['Rooms', 'About', 'FAQ'].map(t => (
-                            <a key={t} href={`#${t.toLowerCase()}`} className="hidden md:inline no-underline hover:opacity-60 transition-opacity" style={{ fontSize: 11, letterSpacing: '.06em', textTransform: 'uppercase', fontWeight: 600, color: '#777' }}>{t}</a>
+                            <a key={t} href={`#${t.toLowerCase()}`} className="hidden md:inline no-underline hover:opacity-60 transition-opacity" style={{ fontSize: 13, letterSpacing: '.04em', textTransform: 'uppercase', fontWeight: 600, color: '#666' }}>{t}</a>
                         ))}
-                        <a href={`tel:${PHONE}`} className="flex items-center gap-2 no-underline hover:opacity-90 transition-opacity" style={{ background: '#1a6b3c', color: '#fff', fontSize: 11, letterSpacing: '.08em', textTransform: 'uppercase', fontWeight: 700, padding: '8px 16px', borderRadius: 3 }}>
-                            <PhIco size={12} /> Call Now
+                        <a href={`tel:${PHONE}`} className="flex items-center gap-2 no-underline hover:opacity-90 transition-opacity" style={{ background: '#1a6b3c', color: '#fff', fontSize: 12, letterSpacing: '.08em', textTransform: 'uppercase', fontWeight: 700, padding: '10px 20px', borderRadius: 4 }}>
+                            <PhIco size={14} /> Call Now
                         </a>
                     </div>
                 </W>
@@ -121,7 +121,7 @@ export default function Fontainebleau() {
 
             {/* Breadcrumbs */}
             <div style={{ borderBottom: '1px solid #f0ece6' }}>
-                <W className="py-2" style={{ fontSize: 11, color: '#ccc' }}>
+                <W className="py-2.5" style={{ fontSize: 12, color: '#ccc' }}>
                     {['Home', 'Hotels', 'U.S.A.', 'Miami Beach'].map((c, i) => (
                         <span key={i}>
                             <a href="/" className="no-underline hover:underline" style={{ color: '#bbb' }}>{c}</a>
@@ -193,11 +193,9 @@ export default function Fontainebleau() {
                     <h2 style={{ fontSize: 22, fontWeight: 600, marginBottom: 28, color: '#1a1a1a' }}>Rooms &amp; Rates</h2>
                     {ROOMS.map((r, i) => (
                         <div key={i} className="flex flex-col sm:flex-row" style={{ borderBottom: '1px solid #eee', padding: '24px 0', gap: 20 }}>
-                            {/* Room image */}
                             <div style={{ width: 200, minWidth: 200, height: 150, borderRadius: 6, overflow: 'hidden', flexShrink: 0 }} className="!w-full sm:!w-[200px] !h-[200px] sm:!h-[150px]">
                                 <img src={r.img} alt={r.name} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} loading="lazy" />
                             </div>
-                            {/* Room info */}
                             <div style={{ flex: 1, minWidth: 0, paddingTop: 4 }}>
                                 <h3 style={{ fontSize: 16, fontWeight: 600, color: '#1a3a5c', margin: '0 0 8px' }}>{r.name}</h3>
                                 <div style={{ fontSize: 12, color: '#999', marginBottom: 6 }}>With your stay:</div>
@@ -205,7 +203,6 @@ export default function Fontainebleau() {
                                     <WifiIco /> Free Internet
                                 </div>
                             </div>
-                            {/* CTA */}
                             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', justifyContent: 'center', gap: 10, flexShrink: 0 }} className="!flex-row sm:!flex-col !items-center sm:!items-end !justify-between sm:!justify-center pt-2 sm:pt-0">
                                 <a href={`tel:${PHONE}`} className="no-underline hover:opacity-90 transition-opacity" style={{ background: '#1a6b3c', color: '#fff', fontSize: 12, fontWeight: 700, letterSpacing: '.06em', textTransform: 'uppercase', padding: '10px 24px', borderRadius: 3, whiteSpace: 'nowrap', display: 'inline-block', textAlign: 'center' }}>
                                     Call for Rate
@@ -233,7 +230,7 @@ export default function Fontainebleau() {
                             <p style={{ marginBottom: 0 }}><strong style={{ color: '#333' }}>Nearby:</strong> Art Deco District, South Beach, Lincoln Road Mall. Miami International Airport is 20 minutes away.</p>
                         </div>
                         <div>
-                            <div style={{ background: '#fff', border: '1px solid #eae6e0', borderRadius: 6, padding: 24, marginBottom: 16 }}>
+                            <div style={{ background: '#fff', border: '1px solid #eae6e0', borderRadius: 6, padding: 24, marginBottom: 20 }}>
                                 <h4 style={{ fontSize: 15, fontWeight: 700, margin: '0 0 16px', color: '#333' }}>Hotel details</h4>
                                 <table style={{ width: '100%', fontSize: 13, borderCollapse: 'collapse' }}>
                                     <tbody>
@@ -307,27 +304,50 @@ export default function Fontainebleau() {
                 </W>
             </section>
 
-            {/* Footer */}
+            {/* Footer - FULL WIDTH distributed layout */}
             <footer style={{ background: '#f0ece6', borderTop: '1px solid #e4dfd8' }}>
-                <W style={{ paddingTop: 48, paddingBottom: 48, textAlign: 'center' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10, marginBottom: 24 }}>
-                        <div style={{ width: 26, height: 26, background: '#1a3a5c', borderRadius: 3, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#ffd666', fontFamily: 'Georgia,serif', fontWeight: 'bold', fontSize: 14 }}>F</div>
-                        <span style={{ fontSize: 14, fontWeight: 700, letterSpacing: '.08em', color: '#1a3a5c' }}>Front Desk Direct</span>
+                <W style={{ paddingTop: 48, paddingBottom: 48 }}>
+                    {/* Top row: Logo left, Links right */}
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: 24, marginBottom: 32 }}>
+                        <div>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 12 }}>
+                                <div style={{ width: 30, height: 30, background: '#1a3a5c', borderRadius: 3, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#ffd666', fontFamily: 'Georgia,serif', fontWeight: 'bold', fontSize: 15 }}>F</div>
+                                <span style={{ fontSize: 15, fontWeight: 700, letterSpacing: '.06em', color: '#1a3a5c' }}>Front Desk Direct</span>
+                            </div>
+                            <p style={{ fontSize: 12, color: '#aaa', maxWidth: 320, lineHeight: 1.7, margin: 0 }}>
+                                An independent reservation service specializing exclusively in {H}.
+                            </p>
+                        </div>
+                        <div style={{ display: 'flex', gap: 32, flexWrap: 'wrap' }}>
+                            <div>
+                                <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.1em', color: '#999', marginBottom: 10 }}>Company</div>
+                                {['About Us', 'Terms of Service', 'Privacy Policy'].map(t => (
+                                    <a key={t} href="/" className="no-underline hover:underline" style={{ display: 'block', color: '#bbb', fontSize: 12, marginBottom: 6 }}>{t}</a>
+                                ))}
+                            </div>
+                            <div>
+                                <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.1em', color: '#999', marginBottom: 10 }}>Support</div>
+                                <a href="#faq" className="no-underline hover:underline" style={{ display: 'block', color: '#bbb', fontSize: 12, marginBottom: 6 }}>FAQs</a>
+                                <a href={`tel:${PHONE}`} className="no-underline hover:underline" style={{ display: 'block', color: '#bbb', fontSize: 12, marginBottom: 6 }}>{PH}</a>
+                            </div>
+                            <div>
+                                <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.1em', color: '#999', marginBottom: 10 }}>Hotel</div>
+                                <a href="#rooms" className="no-underline hover:underline" style={{ display: 'block', color: '#bbb', fontSize: 12, marginBottom: 6 }}>Rooms &amp; Rates</a>
+                                <a href="#about" className="no-underline hover:underline" style={{ display: 'block', color: '#bbb', fontSize: 12, marginBottom: 6 }}>About</a>
+                            </div>
+                        </div>
                     </div>
-                    <p style={{ fontSize: 12, lineHeight: 2, color: '#aaa', maxWidth: 580, margin: '0 auto 16px' }}>
-                        Front Desk Direct is an independent reservation service specializing exclusively in {H}, operated by Chill N Go International LLC.
-                        We are <strong style={{ color: '#999' }}>not affiliated with, endorsed by, or connected to</strong> Fontainebleau Hotels &amp; Resorts or any subsidiaries.
-                        All hotel names and trademarks are property of their respective owners.
-                    </p>
-                    <p style={{ fontSize: 12, lineHeight: 2, color: '#aaa', maxWidth: 580, margin: '0 auto 28px' }}>
-                        Rates sourced from third-party suppliers, subject to change. By calling, you contact Front Desk Direct, not the hotel.
-                    </p>
-                    <div style={{ display: 'flex', justifyContent: 'center', gap: 28, marginBottom: 28, flexWrap: 'wrap' }}>
-                        {['Terms of Service', 'Privacy Policy', 'About Us', 'FAQs'].map(t => (
-                            <a key={t} href={t === 'FAQs' ? '#faq' : '/'} className="no-underline hover:underline" style={{ color: '#bbb', fontSize: 12 }}>{t}</a>
-                        ))}
+
+                    {/* Divider */}
+                    <div style={{ borderTop: '1px solid #e4dfd8', paddingTop: 24 }}>
+                        <p style={{ fontSize: 11, lineHeight: 1.9, color: '#bbb', margin: '0 0 8px' }}>
+                            Front Desk Direct is operated by Chill N Go International LLC.
+                            We are <strong style={{ color: '#aaa' }}>not affiliated with, endorsed by, or connected to</strong> Fontainebleau Hotels &amp; Resorts or any subsidiaries.
+                            All hotel names and trademarks are property of their respective owners.
+                            Rates sourced from third-party suppliers, subject to change. By calling, you contact Front Desk Direct, not the hotel.
+                        </p>
+                        <p style={{ fontSize: 10, color: '#ccc', margin: 0 }}>&copy; 2026 Chill N Go International LLC. All rights reserved.</p>
                     </div>
-                    <p style={{ fontSize: 10, color: '#ccc' }}>&copy; 2026 Chill N Go International LLC. All rights reserved.</p>
                 </W>
             </footer>
 
