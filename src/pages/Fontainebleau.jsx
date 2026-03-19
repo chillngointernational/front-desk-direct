@@ -349,15 +349,6 @@ export default function Fontainebleau() {
                 </W>
             </section>
 
-            <section style={{ borderTop: '1px solid #eae6e0' }}>
-                <W style={{ paddingTop: 48, paddingBottom: 48 }}>
-                    <h2 style={{ fontSize: 22, fontWeight: 600, margin: '0 0 24px', color: '#1a1a1a' }}>Amenities</h2>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-10 gap-y-4">
-                        {AMENITIES.map((a, i) => (<div key={i} style={{ display: 'flex', alignItems: 'center', gap: 10, fontSize: 14, color: '#555', padding: '5px 0' }}><ChkIco /> {a}</div>))}
-                    </div>
-                </W>
-            </section>
-
             <section style={{ background: '#1a3a5c' }}>
                 <W style={{ paddingTop: 56, paddingBottom: 56, textAlign: 'center' }}>
                     <h2 style={{ fontFamily: 'Georgia,serif', fontSize: 'clamp(1.2rem,2.5vw,1.7rem)', fontWeight: 400, color: '#fff', margin: '0 0 12px' }}>Reserve Your Stay at {H}</h2>
