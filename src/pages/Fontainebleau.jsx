@@ -236,78 +236,114 @@ export default function Fontainebleau() {
 
             <section id="about" style={{ background: '#faf8f5', borderTop: '1px solid #eae6e0' }}>
                 <W style={{ paddingTop: 48, paddingBottom: 48 }}>
-                    <h2 style={{ fontSize: 22, fontWeight: 600, margin: '0 0 28px', color: '#1a1a1a' }}>About {H}</h2>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10">
-                        <div className="md:col-span-2" style={{ fontSize: 14, lineHeight: 1.9, color: '#555' }}>
-                            <p style={{ marginBottom: 18 }}>Designed by architect Morris Lapidus and opened in 1954, the Fontainebleau is a landmark oceanfront resort spanning 22 acres along Collins Avenue in Miami Beach's Mid-Beach neighborhood. Its sweeping curved facade has become one of the most recognizable silhouettes on the Miami skyline.</p>
+                    <h2 style={{ fontSize: 22, fontWeight: 600, margin: '0 0 10px', color: '#1a1a1a' }}>About {H}</h2>
+                    <p style={{ fontSize: 14, color: '#888', margin: '0 0 32px', maxWidth: 680, lineHeight: 1.7 }}>Designed by Morris Lapidus in 1954, the Fontainebleau spans 22 oceanfront acres with 1,504 rooms across four towers — a Miami Beach icon that blends mid-century glamour with modern luxury.</p>
 
-                            <h3 style={{ fontSize: 16, fontWeight: 600, color: '#1a3a5c', margin: '28px 0 10px' }}>Four Towers, 1,504 Rooms</h3>
-                            <p style={{ marginBottom: 8 }}>The resort comprises four distinct towers across 36 room types:</p>
-                            <p style={{ marginBottom: 6, paddingLeft: 16 }}><strong style={{ color: '#333' }}>Chateau Tower</strong> — The historic original building. 539 rooms with traditional style, central location near the lobby, pools, and restaurants. Some rooms feature balconies with ocean views.</p>
-                            <p style={{ marginBottom: 6, paddingLeft: 16 }}><strong style={{ color: '#333' }}>Versailles Tower</strong> — 307 rooms adjacent to the Chateau with updated modern decor. Slightly quieter, ideal for guests who prefer proximity without the crowds.</p>
-                            <p style={{ marginBottom: 6, paddingLeft: 16 }}><strong style={{ color: '#333' }}>Trésor Tower</strong> — 37-story all-suite tower with 402 suites. Junior suites start at 500 sq ft with balconies, kitchenettes, and bay/city views. Some connect to create two-room apartments for families.</p>
-                            <p style={{ marginBottom: 18, paddingLeft: 16 }}><strong style={{ color: '#333' }}>Sorrento Tower</strong> — 256 oceanfront suites with fully equipped kitchens, granite countertops, washer/dryer, and oversized furnished balconies. Suites up to 1,122 sq ft.</p>
-
-                            <h3 style={{ fontSize: 16, fontWeight: 600, color: '#1a3a5c', margin: '28px 0 10px' }}>Dining — 9+ Restaurants &amp; Bars</h3>
-                            <p style={{ marginBottom: 6, paddingLeft: 16 }}><strong style={{ color: '#333' }}>Hakkasan</strong> — Michelin-recognized modern Cantonese cuisine. Signature Peking duck and dim sum.</p>
-                            <p style={{ marginBottom: 6, paddingLeft: 16 }}><strong style={{ color: '#333' }}>Mirabella</strong> — Coastal Italian by an award-winning chef. Indoor and outdoor seating.</p>
-                            <p style={{ marginBottom: 6, paddingLeft: 16 }}><strong style={{ color: '#333' }}>Prime 54</strong> — Classic steakhouse with premium cuts and an extensive wine list.</p>
-                            <p style={{ marginBottom: 6, paddingLeft: 16 }}><strong style={{ color: '#333' }}>Blade Sushi</strong> — Light Japanese-inspired dishes, seafood, and tempura.</p>
-                            <p style={{ marginBottom: 6, paddingLeft: 16 }}><strong style={{ color: '#333' }}>La Côte</strong> — Beachside Mediterranean menu for lunch and afternoon bites.</p>
-                            <p style={{ marginBottom: 6, paddingLeft: 16 }}><strong style={{ color: '#333' }}>Chez Bon Bon</strong> — Bakery and coffeehouse with pastries and specialty drinks.</p>
-                            <p style={{ marginBottom: 18, paddingLeft: 16 }}><strong style={{ color: '#333' }}>Also:</strong> Vida (American brasserie), Arkadia Grill, Le Rond Food Truck, Bleau Bar, Glow Bar, and Sorso cocktail lab.</p>
-
-                            <h3 style={{ fontSize: 16, fontWeight: 600, color: '#1a3a5c', margin: '28px 0 10px' }}>Pools &amp; Beach</h3>
-                            <p style={{ marginBottom: 18 }}>11 pools across three areas including the iconic Bow Tie pool with daybeds and cabanas, the Oasis pool with an island cabana, the Family Pool with a waterslide near the Sorrento tower, and the Arkadia Pool — a Vegas-style day club open Friday through Sunday. Direct access to 1,000 feet of private white-sand beach with water sports including paddleboards, kayaks, and windsurfing.</p>
-
-                            <h3 style={{ fontSize: 16, fontWeight: 600, color: '#1a3a5c', margin: '28px 0 10px' }}>Lapis Spa &amp; Fitness</h3>
-                            <p style={{ marginBottom: 18 }}>The two-story, 40,000 sq ft Lapis Spa features 32 treatment rooms, saunas, steam rooms, hydrotherapy circuits, and the signature rain tunnels and rain rooms. The fitness center has floor-to-ceiling ocean views, cardio equipment, free weights up to 85 lbs, heavy bags, and offers yoga classes.</p>
-
-                            <h3 style={{ fontSize: 16, fontWeight: 600, color: '#1a3a5c', margin: '28px 0 10px' }}>Nightlife &amp; Entertainment</h3>
-                            <p style={{ marginBottom: 0 }}>Home to LIV Nightclub — one of the world's most famous nightclubs — plus Bleaulive Presents live entertainment events. Dress code enforced at LIV; note the club may close for private events.</p>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6" style={{ marginBottom: 32 }}>
+                        {/* Block 1 - Towers */}
+                        <div style={{ background: '#fff', borderRadius: 8, overflow: 'hidden', border: '1px solid #eae6e0' }}>
+                            <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&q=80" alt="Hotel towers" style={{ width: '100%', height: 200, objectFit: 'cover', display: 'block' }} loading="lazy" />
+                            <div style={{ padding: 24 }}>
+                                <h3 style={{ fontSize: 16, fontWeight: 600, color: '#1a3a5c', margin: '0 0 10px' }}>Four Towers, 36 Room Types</h3>
+                                <p style={{ fontSize: 13, color: '#666', lineHeight: 1.8, margin: 0 }}>
+                                    <strong style={{ color: '#444' }}>Chateau</strong> — 539 rooms, the historic original. <strong style={{ color: '#444' }}>Versailles</strong> — 307 rooms, modern and quieter. <strong style={{ color: '#444' }}>Trésor</strong> — 402 all-suites, 37 floors, kitchenettes and bay views. <strong style={{ color: '#444' }}>Sorrento</strong> — 256 oceanfront suites up to 1,122 sq ft with full kitchens and washer/dryer.
+                                </p>
+                            </div>
                         </div>
-                        <div>
-                            <div style={{ background: '#fff', border: '1px solid #eae6e0', borderRadius: 6, padding: 24, marginBottom: 16 }}>
-                                <h4 style={{ fontSize: 15, fontWeight: 700, margin: '0 0 16px', color: '#333' }}>Property Details</h4>
-                                <table style={{ width: '100%', fontSize: 13, borderCollapse: 'collapse' }}>
-                                    <tbody>
-                                        {[
-                                            ['Address', '4441 Collins Ave, Miami Beach, FL 33140'],
-                                            ['Built', '1954 (Morris Lapidus)'],
-                                            ['Renovated', '$1B renovation in 2008'],
-                                            ['Towers', '4 (Chateau, Versailles, Trésor, Sorrento)'],
-                                            ['Rooms', '1,504 rooms & suites'],
-                                            ['Room Types', '36 categories'],
-                                            ['Property', '22 oceanfront acres'],
-                                            ['Beach', '1,000 ft private beach'],
-                                            ['Pools', '11 pools + cabanas'],
-                                            ['Restaurants', '9+ dining venues'],
-                                            ['Spa', 'Lapis Spa — 40,000 sq ft'],
-                                            ['Nightclub', 'LIV (dress code)'],
-                                            ['Check-in', '4:00 PM'],
-                                            ['Check-out', '11:00 AM'],
-                                            ['Resort Fee', '$53/night + tax'],
-                                            ['Parking', 'Valet $55–70/night + tax'],
-                                            ['Pets', 'Allowed (fees apply)'],
-                                            ['Airport', 'MIA — 16 km (20 min)'],
-                                            ['WiFi', 'Included in resort fee'],
-                                        ].map(([l, v]) => (
-                                            <tr key={l} style={{ borderBottom: '1px solid #f5f2ed' }}>
-                                                <td style={{ padding: '7px 0', color: '#aaa', verticalAlign: 'top', whiteSpace: 'nowrap', paddingRight: 14, fontSize: 12 }}>{l}</td>
-                                                <td style={{ padding: '7px 0', color: '#555', textAlign: 'right', fontSize: 12 }}>{v}</td>
-                                            </tr>
-                                        ))}
-                                    </tbody>
-                                </table>
+
+                        {/* Block 2 - Dining */}
+                        <div style={{ background: '#fff', borderRadius: 8, overflow: 'hidden', border: '1px solid #eae6e0' }}>
+                            <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=80" alt="Fine dining" style={{ width: '100%', height: 200, objectFit: 'cover', display: 'block' }} loading="lazy" />
+                            <div style={{ padding: 24 }}>
+                                <h3 style={{ fontSize: 16, fontWeight: 600, color: '#1a3a5c', margin: '0 0 10px' }}>9+ Restaurants &amp; Bars</h3>
+                                <p style={{ fontSize: 13, color: '#666', lineHeight: 1.8, margin: 0 }}>
+                                    <strong style={{ color: '#444' }}>Hakkasan</strong> — Michelin-recognized Cantonese. <strong style={{ color: '#444' }}>Mirabella</strong> — Coastal Italian. <strong style={{ color: '#444' }}>Prime 54</strong> — Steakhouse. <strong style={{ color: '#444' }}>Blade</strong> — Japanese. <strong style={{ color: '#444' }}>La Côte</strong> — Beachside Mediterranean. Plus Chez Bon Bon bakery, Vida brasserie, Bleau Bar, and Sorso cocktail lab.
+                                </p>
                             </div>
-                            <div style={{ background: '#fff', border: '1px solid #eae6e0', borderRadius: 6, padding: 20 }}>
-                                <h4 style={{ fontSize: 13, fontWeight: 700, margin: '0 0 10px', color: '#333' }}>Good to Know</h4>
-                                <div style={{ fontSize: 12, lineHeight: 1.8, color: '#777' }}>
-                                    <p style={{ margin: '0 0 6px' }}>Photo ID + credit card required at check-in. $150/day security deposit hold for incidentals.</p>
-                                    <p style={{ margin: '0 0 6px' }}>Children 17 and under stay free in existing beds with a paying adult.</p>
-                                    <p style={{ margin: 0 }}>Rollaway beds available ($60/night). Cribs subject to availability.</p>
-                                </div>
+                        </div>
+
+                        {/* Block 3 - Pools & Beach */}
+                        <div style={{ background: '#fff', borderRadius: 8, overflow: 'hidden', border: '1px solid #eae6e0' }}>
+                            <img src="https://images.unsplash.com/photo-1540541338287-41700207dee6?w=600&q=80" alt="Pool and beach" style={{ width: '100%', height: 200, objectFit: 'cover', display: 'block' }} loading="lazy" />
+                            <div style={{ padding: 24 }}>
+                                <h3 style={{ fontSize: 16, fontWeight: 600, color: '#1a3a5c', margin: '0 0 10px' }}>11 Pools &amp; Private Beach</h3>
+                                <p style={{ fontSize: 13, color: '#666', lineHeight: 1.8, margin: 0 }}>
+                                    The iconic Bow Tie pool with daybeds and cabanas. Oasis pool with island cabana. Family Pool with waterslide. Arkadia day club (Fri–Sun). 1,000 feet of private beach with paddleboards, kayaks, and windsurfing. Private cabanas with butler service, flat-screen TV, and WiFi.
+                                </p>
                             </div>
+                        </div>
+
+                        {/* Block 4 - Spa & Nightlife */}
+                        <div style={{ background: '#fff', borderRadius: 8, overflow: 'hidden', border: '1px solid #eae6e0' }}>
+                            <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=600&q=80" alt="Spa" style={{ width: '100%', height: 200, objectFit: 'cover', display: 'block' }} loading="lazy" />
+                            <div style={{ padding: 24 }}>
+                                <h3 style={{ fontSize: 16, fontWeight: 600, color: '#1a3a5c', margin: '0 0 10px' }}>Lapis Spa &amp; LIV Nightclub</h3>
+                                <p style={{ fontSize: 13, color: '#666', lineHeight: 1.8, margin: 0 }}>
+                                    40,000 sq ft Lapis Spa with 32 treatment rooms, rain tunnels, saunas, and hydrotherapy. Fitness center with ocean views, heavy bags, and yoga classes. LIV Nightclub — one of the world's most famous venues — plus Bleaulive entertainment events.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Property Details Sidebar - now full width below blocks */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div style={{ background: '#fff', border: '1px solid #eae6e0', borderRadius: 8, padding: 24 }}>
+                            <h4 style={{ fontSize: 15, fontWeight: 700, margin: '0 0 16px', color: '#333' }}>Property Details</h4>
+                            <div className="grid grid-cols-2 gap-x-6" style={{ fontSize: 12, color: '#666' }}>
+                                {[
+                                    ['Address', '4441 Collins Ave, Miami Beach, FL 33140'],
+                                    ['Built', '1954 (Morris Lapidus)'],
+                                    ['Renovated', '$1B renovation (2008)'],
+                                    ['Towers', 'Chateau, Versailles, Trésor, Sorrento'],
+                                    ['Rooms', '1,504 rooms & suites'],
+                                    ['Property', '22 oceanfront acres'],
+                                    ['Beach', '1,000 ft private beach'],
+                                    ['Pools', '11 pools + cabanas'],
+                                    ['Restaurants', '9+ dining venues'],
+                                    ['Spa', 'Lapis — 40,000 sq ft'],
+                                    ['Nightclub', 'LIV (dress code)'],
+                                    ['Check-in / Out', '4:00 PM / 11:00 AM'],
+                                    ['Resort Fee', '$53/night + tax'],
+                                    ['Parking', 'Valet $55–70/night'],
+                                    ['Pets', 'Allowed (fees apply)'],
+                                    ['Airport', 'MIA — 20 min'],
+                                ].map(([l, v]) => (
+                                    <div key={l} style={{ padding: '6px 0', borderBottom: '1px solid #f5f2ed', display: 'flex', justifyContent: 'space-between', gap: 8 }}>
+                                        <span style={{ color: '#aaa', whiteSpace: 'nowrap' }}>{l}</span>
+                                        <span style={{ textAlign: 'right', color: '#555' }}>{v}</span>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+
+                        <div style={{ background: '#fff', border: '1px solid #eae6e0', borderRadius: 8, padding: 24 }}>
+                            <h4 style={{ fontSize: 15, fontWeight: 700, margin: '0 0 16px', color: '#333' }}>All Services &amp; Amenities</h4>
+                            <div className="grid grid-cols-2 gap-x-6 gap-y-2" style={{ fontSize: 13, color: '#666' }}>
+                                {[
+                                    'Room Service', '24hr Front Desk', 'Concierge', 'Fitness Center',
+                                    'Beach Access', 'Water Sports', 'Kids Activities', 'Playground & Waterslide',
+                                    'Hot Tub / Jacuzzi', 'Steam Room & Sauna', 'Yoga Classes', 'Free WiFi',
+                                    'In-Room Safe', 'Valet Parking', 'Car Rental Desk', 'Business Center',
+                                    'Gift Shop', 'ATM on Site', 'Wheelchair Access', 'Laundry Service',
+                                    'Pet Friendly', 'Currency Exchange', 'Babysitting', 'Game Room',
+                                ].map((a, i) => (
+                                    <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '3px 0' }}>
+                                        <ChkIco /> <span>{a}</span>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Good to Know */}
+                    <div style={{ background: '#fff', border: '1px solid #eae6e0', borderRadius: 8, padding: 20, marginTop: 16 }}>
+                        <h4 style={{ fontSize: 13, fontWeight: 700, margin: '0 0 8px', color: '#333' }}>Good to Know</h4>
+                        <div style={{ fontSize: 12, lineHeight: 1.8, color: '#777', display: 'flex', gap: 32, flexWrap: 'wrap' }}>
+                            <span>Photo ID + credit card at check-in</span>
+                            <span>$150/day security deposit hold</span>
+                            <span>Children 17 &amp; under stay free in existing beds</span>
+                            <span>Rollaway beds $60/night</span>
+                            <span>WiFi included in resort fee</span>
                         </div>
                     </div>
                 </W>
