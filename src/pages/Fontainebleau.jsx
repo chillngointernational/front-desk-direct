@@ -193,13 +193,6 @@ export default function Fontainebleau() {
                 </W>
             </nav>
 
-            <div style={{ borderBottom: '1px solid #f0ece6' }}>
-                <W className="py-2.5" style={{ fontSize: 12, color: '#ccc' }}>
-                    {['Home', 'Hotels', 'U.S.A.', 'Miami Beach'].map((c, i) => (<span key={i}><a href="/" className="no-underline hover:underline" style={{ color: '#bbb' }}>{c}</a><span className="mx-1.5" style={{ color: '#ddd' }}>&gt;</span></span>))}
-                    <span style={{ color: '#888' }}>{H}</span>
-                </W>
-            </div>
-
             <W style={{ paddingTop: 28, paddingBottom: 8 }}>
                 <div className="grid gap-1" style={{ gridTemplateColumns: '3fr 2fr', height: 'clamp(200px,32vw,420px)', borderRadius: 6, overflow: 'hidden' }}>
                     <div style={{ overflow: 'hidden' }}><img src={PHOTOS[0]} alt={H} style={{ width: '100%', height: '100%', objectFit: 'cover' }} /></div>
