@@ -218,7 +218,7 @@ export default function Fontainebleau() {
 
             {/* About */}
             <section id="about" style={{ background: '#faf8f5', borderTop: '1px solid #eae6e0' }}>
-                <W className="py-12">
+                <W style={{ paddingTop: 48, paddingBottom: 56 }}>
                     <h2 style={{ fontSize: 22, fontWeight: 600, margin: '0 0 28px', color: '#1a1a1a' }}>About {H}</h2>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10">
                         <div className="md:col-span-2" style={{ fontSize: 14, lineHeight: 1.9, color: '#555' }}>
@@ -253,7 +253,7 @@ export default function Fontainebleau() {
 
             {/* Amenities */}
             <section style={{ borderTop: '1px solid #eae6e0' }}>
-                <W className="py-12">
+                <W style={{ paddingTop: 48, paddingBottom: 56 }}>
                     <h2 style={{ fontSize: 22, fontWeight: 600, margin: '0 0 24px', color: '#1a1a1a' }}>Amenities</h2>
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-10 gap-y-4">
                         {AMENITIES.map((a, i) => (
@@ -295,7 +295,7 @@ export default function Fontainebleau() {
 
             {/* Map */}
             <section style={{ borderTop: '1px solid #eae6e0' }}>
-                <W className="py-12">
+                <W style={{ paddingTop: 48, paddingBottom: 56 }}>
                     <h2 style={{ fontSize: 22, fontWeight: 600, margin: '0 0 6px', color: '#1a1a1a' }}>Location</h2>
                     <p style={{ fontSize: 13, color: '#aaa', margin: '0 0 20px' }}>{ADDR}</p>
                     <div style={{ width: '100%', height: 350, border: '1px solid #eae6e0', borderRadius: 6, overflow: 'hidden' }}>
