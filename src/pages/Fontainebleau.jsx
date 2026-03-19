@@ -53,7 +53,7 @@ export default function Fontainebleau() {
     const [faq, setFaq] = useState(null)
     useEffect(() => { window.scrollTo(0, 0); document.title = `${H} — Reservations | Front Desk Direct` }, [])
 
-    const W = ({ children, className = '', narrow, style: s }) => <div className={`w-full mx-auto px-5 md:px-10 ${narrow ? 'max-w-[820px]' : 'max-w-[1140px]'} ${className}`} style={s}>{children}</div>
+    const W = ({ children, className = '', narrow, style: s }) => <div className={`w-full mx-auto px-4 sm:px-6 md:px-10 lg:px-16 ${narrow ? 'max-w-[820px]' : 'max-w-[1140px]'} ${className}`} style={s}>{children}</div>
 
     return (
         <div style={{ background: '#fff', color: '#333', fontFamily: "'Libre Franklin',-apple-system,sans-serif", fontSize: 14, lineHeight: 1.6 }} className="min-h-screen">
@@ -67,7 +67,8 @@ export default function Fontainebleau() {
                     <div className="flex items-center gap-2">
                         <span style={{ color: '#fff', fontWeight: 700 }}>Front Desk Direct</span>
                         <span style={{ opacity: .3 }}>|</span>
-                        <span>Specialists in {H} reservations</span>
+                        <span className="hidden sm:inline">Specialists in {H} reservations</span>
+                        <span className="sm:hidden">Specialists in {H}</span>
                     </div>
                     <a href={`tel:${PHONE}`} className="hidden md:flex items-center gap-2 no-underline" style={{ color: '#ffd666', fontWeight: 700, fontSize: 13 }}><PhIco size={14} color="#ffd666" /> {PH}</a>
                 </W>
@@ -83,7 +84,7 @@ export default function Fontainebleau() {
                             <div style={{ fontSize: 14, fontWeight: 600, color: '#1a3a5c' }}>Hotel Reservations</div>
                         </div>
                     </a>
-                    <div className="flex items-center gap-5">
+                    <div className="flex items-center gap-3 md:gap-5">
                         {['Rooms', 'About', 'FAQ'].map(t => <a key={t} href={`#${t.toLowerCase()}`} className="hidden md:inline no-underline hover:opacity-60 transition-opacity" style={{ fontSize: 11, letterSpacing: '.06em', textTransform: 'uppercase', fontWeight: 600, color: '#777' }}>{t}</a>)}
                         <a href={`tel:${PHONE}`} className="flex items-center gap-2 no-underline hover:opacity-90 transition-opacity" style={{ background: '#1a6b3c', color: '#fff', fontSize: 11, letterSpacing: '.08em', textTransform: 'uppercase', fontWeight: 700, padding: '8px 16px', borderRadius: 3 }}><PhIco size={12} /> Call Now</a>
                     </div>
@@ -98,35 +99,35 @@ export default function Fontainebleau() {
                 </W>
             </div>
 
-            {/* Photo grid — exact GuestReservations layout: 60% main + 40% grid of 4 */}
+            {/* Photo grid */}
             <W className="pt-6 pb-2">
-                <div style={{ display: 'grid', gridTemplateColumns: '3fr 2fr', gap: 4, height: 'clamp(260px,32vw,420px)', borderRadius: 6, overflow: 'hidden' }}>
+                <div className="grid gap-1" style={{ gridTemplateColumns: '3fr 2fr', height: 'clamp(200px,32vw,420px)', borderRadius: 6, overflow: 'hidden' }}>
                     <div style={{ overflow: 'hidden' }}><img src={PHOTOS[0]} alt={H} style={{ width: '100%', height: '100%', objectFit: 'cover' }} /></div>
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gridTemplateRows: '1fr 1fr', gap: 4 }}>
+                    <div className="hidden md:grid" style={{ gridTemplateColumns: '1fr 1fr', gridTemplateRows: '1fr 1fr', gap: 4 }}>
                         {PHOTOS.slice(1).map((p, i) => <div key={i} style={{ overflow: 'hidden', position: 'relative' }}><img src={p} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} loading="lazy" />{i === 3 && <div style={{ position: 'absolute', bottom: 8, right: 8, background: 'rgba(0,0,0,.65)', color: '#fff', fontSize: 11, fontWeight: 600, padding: '4px 10px', borderRadius: 3 }}>Show all photos</div>}</div>)}
                     </div>
                 </div>
             </W>
 
-            {/* Hotel name + address + stars */}
+            {/* Hotel name + stars */}
             <W className="pt-5 pb-1">
-                <h1 style={{ fontFamily: 'Georgia,serif', fontSize: 'clamp(1.5rem,3.5vw,2.2rem)', fontWeight: 400, color: '#1a1a1a', margin: '0 0 4px' }}>{H}</h1>
+                <h1 style={{ fontFamily: 'Georgia,serif', fontSize: 'clamp(1.4rem,3.5vw,2.2rem)', fontWeight: 400, color: '#1a1a1a', margin: '0 0 4px' }}>{H}</h1>
                 <p style={{ fontSize: 13, color: '#999', margin: '0 0 8px' }}>{ADDR}</p>
                 <div className="flex gap-0.5 mb-1">{[1, 2, 3, 4, 5].map(s => <svg key={s} width="18" height="18" viewBox="0 0 24 24" fill="#1a3a5c"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>)}</div>
             </W>
 
-            {/* Booking bar — with vertical dividers like GuestReservations */}
+            {/* Booking bar */}
             <W className="pt-6 pb-4">
                 <div className="flex flex-col md:flex-row items-stretch" style={{ background: '#f4f1ec', border: '1px solid #e4e0d8', borderRadius: 4, overflow: 'hidden' }}>
                     <div className="flex-1 grid grid-cols-2 md:grid-cols-4">
                         {[{ l: 'Check-in:', v: 'Select date' }, { l: 'Check-out:', v: 'Select date' }, { l: 'Rooms:', v: '1' }, { l: 'Guests:', v: '2 Adults' }].map((f, i) => (
-                            <div key={i} className="px-4 py-3.5" style={{ borderRight: i < 3 ? '1px solid #e4e0d8' : 'none' }}>
-                                <div style={{ fontSize: 11, fontWeight: 600, color: '#888', marginBottom: 2 }}>{f.l}</div>
-                                <div style={{ fontSize: 15, fontWeight: 500, color: '#333' }}>{f.v}</div>
+                            <div key={i} className="px-3 md:px-4 py-3" style={{ borderRight: i < 3 ? '1px solid #e4e0d8' : 'none' }}>
+                                <div style={{ fontSize: 10, fontWeight: 600, color: '#888', marginBottom: 2, textTransform: 'uppercase', letterSpacing: '.04em' }}>{f.l}</div>
+                                <div style={{ fontSize: 14, fontWeight: 500, color: '#333' }}>{f.v}</div>
                             </div>
                         ))}
                     </div>
-                    <a href={`tel:${PHONE}`} className="flex items-center justify-center gap-2 no-underline hover:opacity-90 transition-opacity px-6 md:px-8 py-3.5" style={{ background: '#1a6b3c', color: '#fff', fontSize: 14, fontWeight: 700, letterSpacing: '.06em', textTransform: 'uppercase', whiteSpace: 'nowrap' }}>
+                    <a href={`tel:${PHONE}`} className="flex items-center justify-center gap-2 no-underline hover:opacity-90 transition-opacity px-6 py-3.5" style={{ background: '#1a6b3c', color: '#fff', fontSize: 13, fontWeight: 700, letterSpacing: '.06em', textTransform: 'uppercase', whiteSpace: 'nowrap' }}>
                         <PhIco size={16} /> Call for Rates
                     </a>
                 </div>
@@ -140,30 +141,26 @@ export default function Fontainebleau() {
                 </div>
             </W>
 
-            {/* Rooms — 3-column layout like GuestReservations: image | info | CTA */}
+            {/* Rooms */}
             <section id="rooms" style={{ borderTop: '1px solid #eae6e0' }}>
                 <W className="py-8">
                     <h2 style={{ fontSize: 20, fontWeight: 600, marginBottom: 20, color: '#1a1a1a' }}>Rooms &amp; Rates</h2>
-                    <div className="flex flex-col" style={{ gap: 0 }}>
-                        {ROOMS.map((r, i) => (
-                            <div key={i} className="flex flex-col md:flex-row" style={{ borderBottom: '1px solid #eee', padding: '20px 0' }}>
-                                <div className="w-full md:w-[200px] h-[180px] md:h-[150px] flex-shrink-0 overflow-hidden" style={{ borderRadius: 4 }}>
-                                    <img src={r.img} alt={r.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} loading="lazy" />
-                                </div>
-                                <div className="flex-1 md:px-5 pt-3 md:pt-0">
-                                    <h3 style={{ fontSize: 16, fontWeight: 600, color: '#1a3a5c', marginBottom: 6 }}>{r.name}</h3>
-                                    <div style={{ fontSize: 12, color: '#999', marginBottom: 6 }}>With your stay:</div>
-                                    <div className="flex items-center gap-1.5" style={{ fontSize: 13, color: '#1a6b3c', fontWeight: 500 }}>
-                                        <WifiIco /> Free Internet
-                                    </div>
-                                </div>
-                                <div className="flex flex-row md:flex-col items-center md:items-end justify-between md:justify-center gap-3 pt-3 md:pt-0 flex-shrink-0">
-                                    <a href={`tel:${PHONE}`} className="no-underline hover:opacity-90 transition-opacity text-center" style={{ background: '#1a6b3c', color: '#fff', fontSize: 12, fontWeight: 700, letterSpacing: '.06em', textTransform: 'uppercase', padding: '10px 20px', borderRadius: 3, whiteSpace: 'nowrap' }}>Call for Rate</a>
-                                    <div className="flex items-center gap-1.5" style={{ fontSize: 12, color: '#1a6b3c', fontWeight: 500 }}><ChkIco /> Best Rate by Phone</div>
-                                </div>
+                    {ROOMS.map((r, i) => (
+                        <div key={i} className="flex flex-col sm:flex-row" style={{ borderBottom: '1px solid #eee', padding: '20px 0' }}>
+                            <div className="w-full sm:w-[180px] md:w-[200px] h-[180px] sm:h-[140px] md:h-[150px] flex-shrink-0 overflow-hidden" style={{ borderRadius: 4 }}>
+                                <img src={r.img} alt={r.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} loading="lazy" />
                             </div>
-                        ))}
-                    </div>
+                            <div className="flex-1 sm:px-4 md:px-5 pt-3 sm:pt-0">
+                                <h3 style={{ fontSize: 16, fontWeight: 600, color: '#1a3a5c', marginBottom: 6 }}>{r.name}</h3>
+                                <div style={{ fontSize: 12, color: '#999', marginBottom: 6 }}>With your stay:</div>
+                                <div className="flex items-center gap-1.5" style={{ fontSize: 13, color: '#1a6b3c', fontWeight: 500 }}><WifiIco /> Free Internet</div>
+                            </div>
+                            <div className="flex flex-row sm:flex-col items-center sm:items-end justify-between sm:justify-center gap-3 pt-3 sm:pt-0 flex-shrink-0">
+                                <a href={`tel:${PHONE}`} className="no-underline hover:opacity-90 transition-opacity text-center" style={{ background: '#1a6b3c', color: '#fff', fontSize: 12, fontWeight: 700, letterSpacing: '.06em', textTransform: 'uppercase', padding: '10px 20px', borderRadius: 3, whiteSpace: 'nowrap' }}>Call for Rate</a>
+                                <div className="flex items-center gap-1.5" style={{ fontSize: 12, color: '#1a6b3c', fontWeight: 500 }}><ChkIco /> Best Rate by Phone</div>
+                            </div>
+                        </div>
+                    ))}
                 </W>
             </section>
 
@@ -171,7 +168,7 @@ export default function Fontainebleau() {
             <section id="about" style={{ background: '#faf8f5', borderTop: '1px solid #eae6e0' }}>
                 <W className="py-10">
                     <h2 style={{ fontSize: 20, fontWeight: 600, marginBottom: 16, color: '#1a1a1a' }}>About {H}</h2>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
                         <div className="md:col-span-2" style={{ fontSize: 14, lineHeight: 1.9, color: '#555' }}>
                             <p className="mb-4">{H} stands as an iconic oceanfront resort renowned for its striking curved architecture, elegant design, and prime location along Collins Avenue. Originally designed by Morris Lapidus and opened in 1954, it remains a symbol of Miami Beach glamour.</p>
                             <p className="mb-4"><strong style={{ color: '#333' }}>Accommodations:</strong> Over 1,500 guest rooms and suites with modern decor, floor-to-ceiling windows, and ocean, bay, or skyline views.</p>
@@ -185,7 +182,7 @@ export default function Fontainebleau() {
                                 <h4 style={{ fontSize: 14, fontWeight: 700, marginBottom: 12, color: '#333' }}>Hotel details</h4>
                                 <table style={{ width: '100%', fontSize: 13, borderCollapse: 'collapse' }}>
                                     <tbody>
-                                        {[['Location', ADDR], ['Airport', '16 km from MIA'], ['Category', '5-Star Oceanfront Resort'], ['Check-in', '4:00 PM'], ['Check-out', '11:00 AM'], ['Pets', 'Allowed (fees apply)'], ['Rating', '4.1 Google (17k reviews)']].map(([l, v]) => (
+                                        {[['Location', ADDR], ['Airport', '16 km from MIA'], ['Category', '5-Star Oceanfront'], ['Check-in', '4:00 PM'], ['Check-out', '11:00 AM'], ['Pets', 'Allowed (fees apply)'], ['Rating', '4.1 Google (17k)']].map(([l, v]) => (
                                             <tr key={l} style={{ borderBottom: '1px solid #f5f2ed' }}>
                                                 <td style={{ padding: '6px 0', color: '#aaa', verticalAlign: 'top', whiteSpace: 'nowrap', paddingRight: 12 }}>{l}</td>
                                                 <td style={{ padding: '6px 0', color: '#666', textAlign: 'right' }}>{v}</td>
@@ -200,11 +197,11 @@ export default function Fontainebleau() {
                 </W>
             </section>
 
-            {/* Amenities — 3 columns with green circle checks like GuestReservations */}
+            {/* Amenities */}
             <section style={{ borderTop: '1px solid #eae6e0' }}>
                 <W className="py-10">
                     <h2 style={{ fontSize: 20, fontWeight: 600, marginBottom: 16, color: '#1a1a1a' }}>Amenities</h2>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-3">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-8 gap-y-3">
                         {AMENITIES.map((a, i) => (
                             <div key={i} className="flex items-center gap-2.5" style={{ fontSize: 14, color: '#555', padding: '4px 0' }}>
                                 <ChkIco /> {a}
@@ -216,7 +213,7 @@ export default function Fontainebleau() {
 
             {/* CTA */}
             <section style={{ background: '#1a3a5c' }}>
-                <W className="py-14 text-center">
+                <W className="py-12 md:py-14 text-center">
                     <h2 style={{ fontFamily: 'Georgia,serif', fontSize: 'clamp(1.2rem,2.5vw,1.7rem)', fontWeight: 400, color: '#fff', marginBottom: 10 }}>Reserve Your Stay at {H}</h2>
                     <p style={{ fontSize: 13, color: 'rgba(255,255,255,.4)', marginBottom: 24, maxWidth: 420, marginLeft: 'auto', marginRight: 'auto' }}>We focus exclusively on this property. Our specialists know every room, floor, and view.</p>
                     <a href={`tel:${PHONE}`} className="inline-flex items-center gap-3 no-underline hover:opacity-90 transition-opacity" style={{ background: '#1a6b3c', color: '#fff', fontSize: 13, fontWeight: 700, letterSpacing: '.08em', textTransform: 'uppercase', padding: '14px 32px', borderRadius: 3 }}><PhIco size={16} /> Call {PH}</a>
