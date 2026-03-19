@@ -93,15 +93,15 @@ function BookingWidget() {
                         </div>
                         <div style={{ ...cellStyle(false), flex: '0 0 auto', width: 100 }} className="!w-1/3 sm:!w-[100px]">
                             <div style={labelStyle}>Rooms:</div>
-                            <select value={rooms} onChange={e => setRooms(e.target.value)} style={selectStyle}>{[1, 2, 3, 4, 5].map(n => <option key={n} value={n}>{n}</option>)}</select>
+                            <select value={rooms} onChange={e => setRooms(e.target.value)} style={selectStyle}>{[1, 2, 3, 4, 5, 6, 7, 8].map(n => <option key={n} value={n}>{n}</option>)}<option value="9">9+</option></select>
                         </div>
                         <div style={{ ...cellStyle(false), flex: '0 0 auto', width: 100 }} className="!w-1/3 sm:!w-[100px]">
                             <div style={labelStyle}>Adults:</div>
-                            <select value={adults} onChange={e => setAdults(e.target.value)} style={selectStyle}>{[1, 2, 3, 4, 5, 6].map(n => <option key={n} value={n}>{n}</option>)}</select>
+                            <select value={adults} onChange={e => setAdults(e.target.value)} style={selectStyle}>{[1, 2, 3, 4, 5, 6, 7, 8].map(n => <option key={n} value={n}>{n}</option>)}</select>
                         </div>
                         <div style={{ ...cellStyle(false), flex: '0 0 auto', width: 100 }} className="!w-1/3 sm:!w-[100px]">
                             <div style={labelStyle}>Kids:</div>
-                            <select value={kids} onChange={e => setKids(e.target.value)} style={selectStyle}>{[0, 1, 2, 3, 4].map(n => <option key={n} value={n}>{n}</option>)}</select>
+                            <select value={kids} onChange={e => setKids(e.target.value)} style={selectStyle}>{[0, 1, 2, 3, 4, 5, 6, 7, 8].map(n => <option key={n} value={n}>{n}</option>)}</select>
                         </div>
                         <div style={{ display: 'flex', alignItems: 'stretch' }}>
                             <button onClick={handleSearch} disabled={status === 'searching'} style={{ background: status === 'searching' ? '#2a7d4e' : '#1a6b3c', color: '#fff', border: 'none', fontSize: 13, fontWeight: 700, letterSpacing: '.08em', textTransform: 'uppercase', padding: '0 28px', cursor: status === 'searching' ? 'wait' : 'pointer', fontFamily: 'inherit', whiteSpace: 'nowrap', minHeight: 54, transition: 'background .2s' }} onMouseEnter={e => { if (status !== 'searching') e.target.style.background = '#15592f' }} onMouseLeave={e => { if (status !== 'searching') e.target.style.background = '#1a6b3c' }}>
