@@ -41,7 +41,7 @@ const FAQS = [
     { q: `Does ${H} have a spa?`, a: 'Yes. Lapis Spa is a 40,000 sq ft facility offering massages, body treatments, facials, and hydrotherapy.' },
     { q: 'Is there parking available?', a: `Valet parking is available. Contact ${PH} for rates.` },
     { q: `Is this the official website of ${H}?`, a: `No. Front Desk Direct is an independent reservation service specializing exclusively in ${H}, operated by Chill N Go International LLC. We are not affiliated with Fontainebleau Hotels & Resorts.` },
-    { q: 'Why book through Front Desk Direct?', a: `Dedicated focus on this single property. Expert room guidance. Competitive rates from multiple suppliers. Bilingual support. No booking fees.` },
+    { q: 'Why book through Front Desk Direct?', a: 'Dedicated focus on this single property. Expert room guidance. Competitive rates from multiple suppliers. Bilingual support. No booking fees.' },
 ]
 
 const Ico = ({ d, size = 14, color = 'currentColor', sw = 2 }) => <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={sw} strokeLinecap="round" strokeLinejoin="round"><path d={d} /></svg>
@@ -53,7 +53,11 @@ export default function Fontainebleau() {
     const [faq, setFaq] = useState(null)
     useEffect(() => { window.scrollTo(0, 0); document.title = `${H} — Reservations | Front Desk Direct` }, [])
 
-    const W = ({ children, className = '', narrow, style: s }) => <div style={{ width: '100%', maxWidth: narrow ? 820 : 1140, marginLeft: 'auto', marginRight: 'auto', paddingLeft: 20, paddingRight: 20, ...s }} className={className}>{children}</div>
+    const W = ({ children, className = '', narrow, style: s }) => {
+        const base = { width: '100%', maxWidth: narrow ? 820 : 1140, marginLeft: 'auto', marginRight: 'auto', paddingLeft: 24, paddingRight: 24 }
+        return <div style={{ ...base, ...s }} className={className}>{children}</div>
+    }
+
     return (
         <div style={{ background: '#fff', color: '#333', fontFamily: "'Libre Franklin',-apple-system,sans-serif", fontSize: 14, lineHeight: 1.6 }} className="min-h-screen">
 
