@@ -55,167 +55,80 @@ const WifiIco = () => (
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1a6b3c" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}><path d="M5 12.55a11 11 0 0 1 14.08 0" /><path d="M1.42 9a16 16 0 0 1 21.16 0" /><path d="M8.53 16.11a6 6 0 0 1 6.95 0" /><circle cx="12" cy="20" r="1" fill="#1a6b3c" /></svg>
 )
 
-/* ── Booking Widget ── */
 function BookingWidget() {
     const [checkIn, setCheckIn] = useState('')
     const [checkOut, setCheckOut] = useState('')
     const [rooms, setRooms] = useState('1')
     const [adults, setAdults] = useState('2')
     const [kids, setKids] = useState('0')
-    const [status, setStatus] = useState('idle') // idle | searching | no-availability
+    const [status, setStatus] = useState('idle')
 
     const today = new Date().toISOString().split('T')[0]
 
     const handleSearch = () => {
-        if (!checkIn || !checkOut) {
-            alert('Please select check-in and check-out dates.')
-            return
-        }
+        if (!checkIn || !checkOut) { alert('Please select check-in and check-out dates.'); return }
         setStatus('searching')
         setTimeout(() => setStatus('no-availability'), 2800)
     }
 
-    const handleReset = () => {
-        setStatus('idle')
-        setCheckIn('')
-        setCheckOut('')
-    }
+    const handleReset = () => { setStatus('idle'); setCheckIn(''); setCheckOut('') }
 
-    const inputStyle = {
-        width: '100%',
-        border: 'none',
-        background: 'transparent',
-        fontSize: 15,
-        fontWeight: 500,
-        color: '#333',
-        fontFamily: 'inherit',
-        outline: 'none',
-        cursor: 'pointer',
-        padding: 0,
-    }
-
-    const labelStyle = {
-        fontSize: 10,
-        fontWeight: 600,
-        color: '#888',
-        textTransform: 'uppercase',
-        letterSpacing: '.06em',
-        marginBottom: 4,
-    }
-
-    const cellStyle = (last) => ({
-        padding: '14px 16px',
-        borderRight: last ? 'none' : '1px solid #e4e0d8',
-        flex: 1,
-        minWidth: 0,
-    })
-
-    const selectStyle = {
-        ...inputStyle,
-        appearance: 'none',
-        WebkitAppearance: 'none',
-        backgroundImage: `url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23999' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E")`,
-        backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'right 0 center',
-        paddingRight: 16,
-    }
+    const inputStyle = { width: '100%', border: 'none', background: 'transparent', fontSize: 15, fontWeight: 500, color: '#333', fontFamily: 'inherit', outline: 'none', cursor: 'pointer', padding: 0 }
+    const labelStyle = { fontSize: 10, fontWeight: 600, color: '#888', textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: 4 }
+    const cellStyle = (last) => ({ padding: '14px 16px', borderRight: last ? 'none' : '1px solid #e4e0d8', flex: 1, minWidth: 0 })
+    const selectStyle = { ...inputStyle, appearance: 'none', WebkitAppearance: 'none', backgroundImage: `url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23999' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E")`, backgroundRepeat: 'no-repeat', backgroundPosition: 'right 0 center', paddingRight: 16 }
 
     return (
         <div style={{ background: '#f8f6f2', borderTop: '1px solid #eae6e0', borderBottom: '1px solid #eae6e0' }}>
             <div style={{ width: '100%', maxWidth: 1140, marginLeft: 'auto', marginRight: 'auto', paddingLeft: 24, paddingRight: 24, paddingTop: 24, paddingBottom: 24 }}>
-
-                {/* Search bar */}
                 <div style={{ background: '#fff', border: '1px solid #e0dcd6', borderRadius: 6, overflow: 'hidden' }}>
                     <div style={{ display: 'flex', flexWrap: 'wrap' }}>
-                        {/* Check-in */}
                         <div style={cellStyle(false)} className="!w-full sm:!w-auto">
                             <div style={labelStyle}>Check-in:</div>
                             <input type="date" value={checkIn} onChange={e => { setCheckIn(e.target.value); setStatus('idle') }} min={today} style={inputStyle} />
                         </div>
-                        {/* Check-out */}
                         <div style={cellStyle(false)} className="!w-full sm:!w-auto">
                             <div style={labelStyle}>Check-out:</div>
                             <input type="date" value={checkOut} onChange={e => { setCheckOut(e.target.value); setStatus('idle') }} min={checkIn || today} style={inputStyle} />
                         </div>
-                        {/* Rooms */}
                         <div style={{ ...cellStyle(false), flex: '0 0 auto', width: 100 }} className="!w-1/3 sm:!w-[100px]">
                             <div style={labelStyle}>Rooms:</div>
-                            <select value={rooms} onChange={e => setRooms(e.target.value)} style={selectStyle}>
-                                {[1, 2, 3, 4, 5].map(n => <option key={n} value={n}>{n}</option>)}
-                            </select>
+                            <select value={rooms} onChange={e => setRooms(e.target.value)} style={selectStyle}>{[1, 2, 3, 4, 5].map(n => <option key={n} value={n}>{n}</option>)}</select>
                         </div>
-                        {/* Adults */}
                         <div style={{ ...cellStyle(false), flex: '0 0 auto', width: 100 }} className="!w-1/3 sm:!w-[100px]">
                             <div style={labelStyle}>Adults:</div>
-                            <select value={adults} onChange={e => setAdults(e.target.value)} style={selectStyle}>
-                                {[1, 2, 3, 4, 5, 6].map(n => <option key={n} value={n}>{n}</option>)}
-                            </select>
+                            <select value={adults} onChange={e => setAdults(e.target.value)} style={selectStyle}>{[1, 2, 3, 4, 5, 6].map(n => <option key={n} value={n}>{n}</option>)}</select>
                         </div>
-                        {/* Kids */}
                         <div style={{ ...cellStyle(false), flex: '0 0 auto', width: 100 }} className="!w-1/3 sm:!w-[100px]">
                             <div style={labelStyle}>Kids:</div>
-                            <select value={kids} onChange={e => setKids(e.target.value)} style={selectStyle}>
-                                {[0, 1, 2, 3, 4].map(n => <option key={n} value={n}>{n}</option>)}
-                            </select>
+                            <select value={kids} onChange={e => setKids(e.target.value)} style={selectStyle}>{[0, 1, 2, 3, 4].map(n => <option key={n} value={n}>{n}</option>)}</select>
                         </div>
-                        {/* Button */}
                         <div style={{ display: 'flex', alignItems: 'stretch' }}>
-                            <button
-                                onClick={handleSearch}
-                                disabled={status === 'searching'}
-                                style={{
-                                    background: status === 'searching' ? '#2a7d4e' : '#1a6b3c',
-                                    color: '#fff',
-                                    border: 'none',
-                                    fontSize: 13,
-                                    fontWeight: 700,
-                                    letterSpacing: '.08em',
-                                    textTransform: 'uppercase',
-                                    padding: '0 28px',
-                                    cursor: status === 'searching' ? 'wait' : 'pointer',
-                                    fontFamily: 'inherit',
-                                    whiteSpace: 'nowrap',
-                                    minHeight: 54,
-                                    transition: 'background .2s',
-                                }}
-                                onMouseEnter={e => { if (status !== 'searching') e.target.style.background = '#15592f' }}
-                                onMouseLeave={e => { if (status !== 'searching') e.target.style.background = '#1a6b3c' }}
-                            >
+                            <button onClick={handleSearch} disabled={status === 'searching'} style={{ background: status === 'searching' ? '#2a7d4e' : '#1a6b3c', color: '#fff', border: 'none', fontSize: 13, fontWeight: 700, letterSpacing: '.08em', textTransform: 'uppercase', padding: '0 28px', cursor: status === 'searching' ? 'wait' : 'pointer', fontFamily: 'inherit', whiteSpace: 'nowrap', minHeight: 54, transition: 'background .2s' }} onMouseEnter={e => { if (status !== 'searching') e.target.style.background = '#15592f' }} onMouseLeave={e => { if (status !== 'searching') e.target.style.background = '#1a6b3c' }}>
                                 {status === 'searching' ? 'Searching...' : 'Find Rooms'}
                             </button>
                         </div>
                     </div>
                 </div>
 
-                {/* Loading state */}
                 {status === 'searching' && (
                     <div style={{ textAlign: 'center', padding: '32px 0 12px' }}>
                         <div style={{ display: 'inline-flex', alignItems: 'center', gap: 12 }}>
-                            {/* Spinner */}
-                            <svg width="20" height="20" viewBox="0 0 20 20" style={{ animation: 'spin 1s linear infinite' }}>
-                                <circle cx="10" cy="10" r="8" fill="none" stroke="#ddd" strokeWidth="2.5" />
-                                <circle cx="10" cy="10" r="8" fill="none" stroke="#1a6b3c" strokeWidth="2.5" strokeDasharray="50" strokeDashoffset="35" strokeLinecap="round" />
-                            </svg>
+                            <svg width="20" height="20" viewBox="0 0 20 20" style={{ animation: 'spin 1s linear infinite' }}><circle cx="10" cy="10" r="8" fill="none" stroke="#ddd" strokeWidth="2.5" /><circle cx="10" cy="10" r="8" fill="none" stroke="#1a6b3c" strokeWidth="2.5" strokeDasharray="50" strokeDashoffset="35" strokeLinecap="round" /></svg>
                             <span style={{ fontSize: 14, color: '#888', fontWeight: 500 }}>Searching availability for {H}...</span>
                         </div>
                         <style>{`@keyframes spin { to { transform: rotate(360deg) } }`}</style>
                     </div>
                 )}
 
-                {/* No availability result */}
                 {status === 'no-availability' && (
                     <div style={{ background: '#fff', border: '1px solid #e0dcd6', borderRadius: 6, marginTop: 16, padding: '28px 24px', textAlign: 'center' }}>
-                        {/* X icon */}
                         <div style={{ width: 44, height: 44, borderRadius: '50%', background: '#fef2f2', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', marginBottom: 14 }}>
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#dc2626" strokeWidth="2" strokeLinecap="round"><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></svg>
                         </div>
                         <h3 style={{ fontSize: 17, fontWeight: 600, color: '#333', margin: '0 0 6px' }}>No Online Availability</h3>
-                        <p style={{ fontSize: 13, color: '#888', margin: '0 0 20px', maxWidth: 420, marginLeft: 'auto', marginRight: 'auto', lineHeight: 1.7 }}>
-                            We couldn't find online rates for your dates. Our reservation specialists may have access to exclusive rates not available online.
-                        </p>
-                        <a href={`tel:${PHONE}`} className="inline-flex items-center gap-2 no-underline hover:opacity-90 transition-opacity" style={{ background: '#1a6b3c', color: '#fff', fontSize: 13, fontWeight: 700, letterSpacing: '.06em', textTransform: 'uppercase', padding: '13px 28px', borderRadius: 4 }}>
-                            <PhIco size={16} /> Call for Availability — {PH}
-                        </a>
+                        <p style={{ fontSize: 13, color: '#888', margin: '0 0 20px', maxWidth: 420, marginLeft: 'auto', marginRight: 'auto', lineHeight: 1.7 }}>We couldn't find online rates for your dates. Our reservation specialists may have access to exclusive rates not available online.</p>
+                        <a href={`tel:${PHONE}`} className="inline-flex items-center gap-2 no-underline hover:opacity-90 transition-opacity" style={{ background: '#1a6b3c', color: '#fff', fontSize: 13, fontWeight: 700, letterSpacing: '.06em', textTransform: 'uppercase', padding: '13px 28px', borderRadius: 4 }}><PhIco size={16} /> Call for Availability — {PH}</a>
                         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 16, marginTop: 14, fontSize: 12, color: '#aaa' }}>
                             <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}><ChkIco /> No fees</span>
                             <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}><ChkIco /> Best rate guarantee</span>
@@ -225,7 +138,6 @@ function BookingWidget() {
                     </div>
                 )}
 
-                {/* Disclosure */}
                 <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 12, color: '#aaa', marginTop: 14 }}>
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ccc" strokeWidth="1.5" style={{ flexShrink: 0 }}><circle cx="12" cy="12" r="10" /><line x1="12" y1="16" x2="12" y2="12" /><line x1="12" y1="8" x2="12.01" y2="8" /></svg>
                     <span><strong style={{ color: '#999' }}>Front Desk Direct</strong> is an independent reservation service dedicated exclusively to {H}. <a href="#faq" style={{ color: '#aaa' }}>Learn more</a></span>
@@ -244,26 +156,15 @@ export default function Fontainebleau() {
     }, [])
 
     const W = ({ children, className = '', narrow, style: s }) => {
-        const base = {
-            width: '100%',
-            maxWidth: narrow ? 820 : 1140,
-            marginLeft: 'auto',
-            marginRight: 'auto',
-            paddingLeft: 24,
-            paddingRight: 24,
-        }
+        const base = { width: '100%', maxWidth: narrow ? 820 : 1140, marginLeft: 'auto', marginRight: 'auto', paddingLeft: 24, paddingRight: 24 }
         return <div style={{ ...base, ...s }} className={className}>{children}</div>
     }
 
     return (
         <div style={{ background: '#fff', color: '#333', fontFamily: "'Libre Franklin',-apple-system,sans-serif", fontSize: 14, lineHeight: 1.6 }} className="min-h-screen">
 
-            {/* Mobile CTA */}
-            <a href={`tel:${PHONE}`} className="fixed bottom-0 left-0 right-0 z-[100] md:hidden flex items-center justify-center gap-2 py-4 text-[13px] font-bold tracking-wide uppercase no-underline" style={{ background: '#1a6b3c', color: '#fff', boxShadow: '0 -2px 12px rgba(0,0,0,.1)' }}>
-                <PhIco size={16} /> Call — {PH}
-            </a>
+            <a href={`tel:${PHONE}`} className="fixed bottom-0 left-0 right-0 z-[100] md:hidden flex items-center justify-center gap-2 py-4 text-[13px] font-bold tracking-wide uppercase no-underline" style={{ background: '#1a6b3c', color: '#fff', boxShadow: '0 -2px 12px rgba(0,0,0,.1)' }}><PhIco size={16} /> Call — {PH}</a>
 
-            {/* Top bar */}
             <div style={{ background: '#1a3a5c' }}>
                 <W className="flex items-center justify-between" style={{ color: 'rgba(255,255,255,.6)', fontSize: 12, paddingTop: 10, paddingBottom: 10 }}>
                     <div className="flex items-center gap-2">
@@ -272,13 +173,10 @@ export default function Fontainebleau() {
                         <span className="hidden sm:inline">Specialists in {H} reservations</span>
                         <span className="sm:hidden">Specialists in {H}</span>
                     </div>
-                    <a href={`tel:${PHONE}`} className="hidden md:flex items-center gap-2 no-underline" style={{ color: '#ffd666', fontWeight: 700, fontSize: 14 }}>
-                        <PhIco size={15} color="#ffd666" /> {PH}
-                    </a>
+                    <a href={`tel:${PHONE}`} className="hidden md:flex items-center gap-2 no-underline" style={{ color: '#ffd666', fontWeight: 700, fontSize: 14 }}><PhIco size={15} color="#ffd666" /> {PH}</a>
                 </W>
             </div>
 
-            {/* Nav */}
             <nav className="sticky top-0 z-50" style={{ background: '#fff', borderBottom: '1px solid #e8e4de', boxShadow: '0 1px 4px rgba(0,0,0,.06)' }}>
                 <W className="flex items-center justify-between" style={{ paddingTop: 14, paddingBottom: 14 }}>
                     <a href="/" className="no-underline flex items-center gap-3">
@@ -289,63 +187,38 @@ export default function Fontainebleau() {
                         </div>
                     </a>
                     <div className="flex items-center gap-4 md:gap-6">
-                        {['Rooms', 'About', 'FAQ'].map(t => (
-                            <a key={t} href={`#${t.toLowerCase()}`} className="hidden md:inline no-underline hover:opacity-60 transition-opacity" style={{ fontSize: 13, letterSpacing: '.04em', textTransform: 'uppercase', fontWeight: 600, color: '#666' }}>{t}</a>
-                        ))}
-                        <a href={`tel:${PHONE}`} className="flex items-center gap-2 no-underline hover:opacity-90 transition-opacity" style={{ background: '#1a6b3c', color: '#fff', fontSize: 12, letterSpacing: '.08em', textTransform: 'uppercase', fontWeight: 700, padding: '10px 20px', borderRadius: 4 }}>
-                            <PhIco size={14} /> Call Now
-                        </a>
+                        {['Rooms', 'About', 'FAQ'].map(t => (<a key={t} href={`#${t.toLowerCase()}`} className="hidden md:inline no-underline hover:opacity-60 transition-opacity" style={{ fontSize: 13, letterSpacing: '.04em', textTransform: 'uppercase', fontWeight: 600, color: '#666' }}>{t}</a>))}
+                        <a href={`tel:${PHONE}`} className="flex items-center gap-2 no-underline hover:opacity-90 transition-opacity" style={{ background: '#1a6b3c', color: '#fff', fontSize: 12, letterSpacing: '.08em', textTransform: 'uppercase', fontWeight: 700, padding: '10px 20px', borderRadius: 4 }}><PhIco size={14} /> Call Now</a>
                     </div>
                 </W>
             </nav>
 
-            {/* Breadcrumbs */}
             <div style={{ borderBottom: '1px solid #f0ece6' }}>
                 <W className="py-2.5" style={{ fontSize: 12, color: '#ccc' }}>
-                    {['Home', 'Hotels', 'U.S.A.', 'Miami Beach'].map((c, i) => (
-                        <span key={i}>
-                            <a href="/" className="no-underline hover:underline" style={{ color: '#bbb' }}>{c}</a>
-                            <span className="mx-1.5" style={{ color: '#ddd' }}>&gt;</span>
-                        </span>
-                    ))}
+                    {['Home', 'Hotels', 'U.S.A.', 'Miami Beach'].map((c, i) => (<span key={i}><a href="/" className="no-underline hover:underline" style={{ color: '#bbb' }}>{c}</a><span className="mx-1.5" style={{ color: '#ddd' }}>&gt;</span></span>))}
                     <span style={{ color: '#888' }}>{H}</span>
                 </W>
             </div>
 
-            {/* Photo grid */}
-            <W className="pt-6 pb-2">
+            <W style={{ paddingTop: 28, paddingBottom: 8 }}>
                 <div className="grid gap-1" style={{ gridTemplateColumns: '3fr 2fr', height: 'clamp(200px,32vw,420px)', borderRadius: 6, overflow: 'hidden' }}>
-                    <div style={{ overflow: 'hidden' }}>
-                        <img src={PHOTOS[0]} alt={H} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                    </div>
+                    <div style={{ overflow: 'hidden' }}><img src={PHOTOS[0]} alt={H} style={{ width: '100%', height: '100%', objectFit: 'cover' }} /></div>
                     <div className="hidden md:grid" style={{ gridTemplateColumns: '1fr 1fr', gridTemplateRows: '1fr 1fr', gap: 4 }}>
-                        {PHOTOS.slice(1).map((p, i) => (
-                            <div key={i} style={{ overflow: 'hidden', position: 'relative' }}>
-                                <img src={p} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} loading="lazy" />
-                                {i === 3 && (
-                                    <div style={{ position: 'absolute', bottom: 8, right: 8, background: 'rgba(0,0,0,.65)', color: '#fff', fontSize: 11, fontWeight: 600, padding: '4px 10px', borderRadius: 3 }}>Show all photos</div>
-                                )}
-                            </div>
-                        ))}
+                        {PHOTOS.slice(1).map((p, i) => (<div key={i} style={{ overflow: 'hidden', position: 'relative' }}><img src={p} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} loading="lazy" />{i === 3 && (<div style={{ position: 'absolute', bottom: 8, right: 8, background: 'rgba(0,0,0,.65)', color: '#fff', fontSize: 11, fontWeight: 600, padding: '4px 10px', borderRadius: 3 }}>Show all photos</div>)}</div>))}
                     </div>
                 </div>
             </W>
 
-            {/* Hotel name + stars */}
-            <W className="pt-5 pb-1">
-                <h1 style={{ fontFamily: 'Georgia,serif', fontSize: 'clamp(1.4rem,3.5vw,2.2rem)', fontWeight: 400, color: '#1a1a1a', margin: '0 0 4px' }}>{H}</h1>
-                <p style={{ fontSize: 13, color: '#999', margin: '0 0 8px' }}>{ADDR}</p>
-                <div className="flex gap-0.5 mb-1">
-                    {[1, 2, 3, 4, 5].map(s => (
-                        <svg key={s} width="18" height="18" viewBox="0 0 24 24" fill="#1a3a5c"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
-                    ))}
+            <W style={{ paddingTop: 28, paddingBottom: 40 }}>
+                <h1 style={{ fontFamily: 'Georgia,serif', fontSize: 'clamp(1.4rem,3.5vw,2.2rem)', fontWeight: 400, color: '#1a1a1a', margin: '0 0 6px' }}>{H}</h1>
+                <p style={{ fontSize: 13, color: '#999', margin: '0 0 10px' }}>{ADDR}</p>
+                <div style={{ display: 'flex', gap: 2 }}>
+                    {[1, 2, 3, 4, 5].map(s => (<svg key={s} width="20" height="20" viewBox="0 0 24 24" fill="#1a3a5c"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>))}
                 </div>
             </W>
 
-            {/* ══ BOOKING WIDGET ══ */}
             <BookingWidget />
 
-            {/* Rooms */}
             <section id="rooms" style={{ borderTop: '1px solid #eae6e0' }}>
                 <W className="py-10">
                     <h2 style={{ fontSize: 22, fontWeight: 600, marginBottom: 28, color: '#1a1a1a' }}>Rooms &amp; Rates</h2>
@@ -357,24 +230,17 @@ export default function Fontainebleau() {
                             <div style={{ flex: 1, minWidth: 0, paddingTop: 4 }}>
                                 <h3 style={{ fontSize: 16, fontWeight: 600, color: '#1a3a5c', margin: '0 0 8px' }}>{r.name}</h3>
                                 <div style={{ fontSize: 12, color: '#999', marginBottom: 6 }}>With your stay:</div>
-                                <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 13, color: '#1a6b3c', fontWeight: 500 }}>
-                                    <WifiIco /> Free Internet
-                                </div>
+                                <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 13, color: '#1a6b3c', fontWeight: 500 }}><WifiIco /> Free Internet</div>
                             </div>
                             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', justifyContent: 'center', gap: 10, flexShrink: 0 }} className="!flex-row sm:!flex-col !items-center sm:!items-end !justify-between sm:!justify-center pt-2 sm:pt-0">
-                                <a href={`tel:${PHONE}`} className="no-underline hover:opacity-90 transition-opacity" style={{ background: '#1a6b3c', color: '#fff', fontSize: 12, fontWeight: 700, letterSpacing: '.06em', textTransform: 'uppercase', padding: '10px 24px', borderRadius: 3, whiteSpace: 'nowrap', display: 'inline-block', textAlign: 'center' }}>
-                                    Call for Rate
-                                </a>
-                                <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 12, color: '#1a6b3c', fontWeight: 500 }}>
-                                    <ChkIco /> Best Rate by Phone
-                                </div>
+                                <a href={`tel:${PHONE}`} className="no-underline hover:opacity-90 transition-opacity" style={{ background: '#1a6b3c', color: '#fff', fontSize: 12, fontWeight: 700, letterSpacing: '.06em', textTransform: 'uppercase', padding: '10px 24px', borderRadius: 3, whiteSpace: 'nowrap', display: 'inline-block', textAlign: 'center' }}>Call for Rate</a>
+                                <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 12, color: '#1a6b3c', fontWeight: 500 }}><ChkIco /> Best Rate by Phone</div>
                             </div>
                         </div>
                     ))}
                 </W>
             </section>
 
-            {/* About */}
             <section id="about" style={{ background: '#faf8f5', borderTop: '1px solid #eae6e0' }}>
                 <W className="py-12">
                     <h2 style={{ fontSize: 22, fontWeight: 600, margin: '0 0 28px', color: '#1a1a1a' }}>About {H}</h2>
@@ -401,41 +267,30 @@ export default function Fontainebleau() {
                                     </tbody>
                                 </table>
                             </div>
-                            <a href={`tel:${PHONE}`} className="no-underline hover:opacity-90 transition-opacity" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, width: '100%', background: '#1a3a5c', color: '#fff', fontSize: 12, fontWeight: 700, letterSpacing: '.08em', textTransform: 'uppercase', padding: '14px 0', borderRadius: 4 }}>
-                                <PhIco size={14} /> Reserve by Phone
-                            </a>
+                            <a href={`tel:${PHONE}`} className="no-underline hover:opacity-90 transition-opacity" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, width: '100%', background: '#1a3a5c', color: '#fff', fontSize: 12, fontWeight: 700, letterSpacing: '.08em', textTransform: 'uppercase', padding: '14px 0', borderRadius: 4 }}><PhIco size={14} /> Reserve by Phone</a>
                         </div>
                     </div>
                 </W>
             </section>
 
-            {/* Amenities */}
             <section style={{ borderTop: '1px solid #eae6e0' }}>
                 <W className="py-12">
                     <h2 style={{ fontSize: 22, fontWeight: 600, margin: '0 0 24px', color: '#1a1a1a' }}>Amenities</h2>
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-10 gap-y-4">
-                        {AMENITIES.map((a, i) => (
-                            <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 10, fontSize: 14, color: '#555', padding: '5px 0' }}>
-                                <ChkIco /> {a}
-                            </div>
-                        ))}
+                        {AMENITIES.map((a, i) => (<div key={i} style={{ display: 'flex', alignItems: 'center', gap: 10, fontSize: 14, color: '#555', padding: '5px 0' }}><ChkIco /> {a}</div>))}
                     </div>
                 </W>
             </section>
 
-            {/* CTA */}
             <section style={{ background: '#1a3a5c' }}>
                 <W style={{ paddingTop: 56, paddingBottom: 56, textAlign: 'center' }}>
                     <h2 style={{ fontFamily: 'Georgia,serif', fontSize: 'clamp(1.2rem,2.5vw,1.7rem)', fontWeight: 400, color: '#fff', margin: '0 0 12px' }}>Reserve Your Stay at {H}</h2>
                     <p style={{ fontSize: 13, color: 'rgba(255,255,255,.4)', margin: '0 auto 32px', maxWidth: 420 }}>We focus exclusively on this property. Our specialists know every room, floor, and view.</p>
-                    <a href={`tel:${PHONE}`} className="inline-flex items-center gap-3 no-underline hover:opacity-90 transition-opacity" style={{ background: '#1a6b3c', color: '#fff', fontSize: 13, fontWeight: 700, letterSpacing: '.08em', textTransform: 'uppercase', padding: '14px 32px', borderRadius: 3 }}>
-                        <PhIco size={16} /> Call {PH}
-                    </a>
+                    <a href={`tel:${PHONE}`} className="inline-flex items-center gap-3 no-underline hover:opacity-90 transition-opacity" style={{ background: '#1a6b3c', color: '#fff', fontSize: 13, fontWeight: 700, letterSpacing: '.08em', textTransform: 'uppercase', padding: '14px 32px', borderRadius: 3 }}><PhIco size={16} /> Call {PH}</a>
                     <p style={{ fontSize: 11, color: 'rgba(255,255,255,.22)', marginTop: 20 }}>English &amp; Spanish · No fees · 7 days a week</p>
                 </W>
             </section>
 
-            {/* FAQ */}
             <section id="faq" style={{ background: '#faf8f5', borderTop: '1px solid #eae6e0' }}>
                 <W className="py-12" narrow>
                     <h2 style={{ fontSize: 22, fontWeight: 600, margin: '0 0 24px', color: '#1a1a1a' }}>Frequently Asked Questions</h2>
@@ -451,7 +306,6 @@ export default function Fontainebleau() {
                 </W>
             </section>
 
-            {/* Map */}
             <section style={{ borderTop: '1px solid #eae6e0' }}>
                 <W style={{ paddingTop: 48, paddingBottom: 56 }}>
                     <h2 style={{ fontSize: 22, fontWeight: 600, margin: '0 0 6px', color: '#1a1a1a' }}>Location</h2>
@@ -462,7 +316,6 @@ export default function Fontainebleau() {
                 </W>
             </section>
 
-            {/* Footer */}
             <footer style={{ background: '#f0ece6', borderTop: '1px solid #e4dfd8' }}>
                 <W style={{ paddingTop: 48, paddingBottom: 48 }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: 24, marginBottom: 32 }}>
@@ -471,16 +324,12 @@ export default function Fontainebleau() {
                                 <div style={{ width: 30, height: 30, background: '#1a3a5c', borderRadius: 3, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#ffd666', fontFamily: 'Georgia,serif', fontWeight: 'bold', fontSize: 15 }}>F</div>
                                 <span style={{ fontSize: 15, fontWeight: 700, letterSpacing: '.06em', color: '#1a3a5c' }}>Front Desk Direct</span>
                             </div>
-                            <p style={{ fontSize: 12, color: '#aaa', maxWidth: 320, lineHeight: 1.7, margin: 0 }}>
-                                An independent reservation service specializing exclusively in {H}.
-                            </p>
+                            <p style={{ fontSize: 12, color: '#aaa', maxWidth: 320, lineHeight: 1.7, margin: 0 }}>An independent reservation service specializing exclusively in {H}.</p>
                         </div>
                         <div style={{ display: 'flex', gap: 32, flexWrap: 'wrap' }}>
                             <div>
                                 <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.1em', color: '#999', marginBottom: 10 }}>Company</div>
-                                {['About Us', 'Terms of Service', 'Privacy Policy'].map(t => (
-                                    <a key={t} href="/" className="no-underline hover:underline" style={{ display: 'block', color: '#bbb', fontSize: 12, marginBottom: 6 }}>{t}</a>
-                                ))}
+                                {['About Us', 'Terms of Service', 'Privacy Policy'].map(t => (<a key={t} href="/" className="no-underline hover:underline" style={{ display: 'block', color: '#bbb', fontSize: 12, marginBottom: 6 }}>{t}</a>))}
                             </div>
                             <div>
                                 <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.1em', color: '#999', marginBottom: 10 }}>Support</div>
@@ -495,12 +344,7 @@ export default function Fontainebleau() {
                         </div>
                     </div>
                     <div style={{ borderTop: '1px solid #e4dfd8', paddingTop: 24 }}>
-                        <p style={{ fontSize: 11, lineHeight: 1.9, color: '#bbb', margin: '0 0 8px' }}>
-                            Front Desk Direct is operated by Chill N Go International LLC.
-                            We are <strong style={{ color: '#aaa' }}>not affiliated with, endorsed by, or connected to</strong> Fontainebleau Hotels &amp; Resorts or any subsidiaries.
-                            All hotel names and trademarks are property of their respective owners.
-                            Rates sourced from third-party suppliers, subject to change. By calling, you contact Front Desk Direct, not the hotel.
-                        </p>
+                        <p style={{ fontSize: 11, lineHeight: 1.9, color: '#bbb', margin: '0 0 8px' }}>Front Desk Direct is operated by Chill N Go International LLC. We are <strong style={{ color: '#aaa' }}>not affiliated with, endorsed by, or connected to</strong> Fontainebleau Hotels &amp; Resorts or any subsidiaries. All hotel names and trademarks are property of their respective owners. Rates sourced from third-party suppliers, subject to change. By calling, you contact Front Desk Direct, not the hotel.</p>
                         <p style={{ fontSize: 10, color: '#ccc', margin: 0 }}>&copy; 2026 Chill N Go International LLC. All rights reserved.</p>
                     </div>
                 </W>
