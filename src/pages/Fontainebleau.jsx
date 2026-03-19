@@ -220,7 +220,7 @@ export default function Fontainebleau() {
             <BookingWidget />
 
             <section id="rooms" style={{ borderTop: '1px solid #eae6e0' }}>
-                <W className="py-10">
+                <W style={{ paddingTop: 48, paddingBottom: 40 }}>
                     <h2 style={{ fontSize: 22, fontWeight: 600, marginBottom: 28, color: '#1a1a1a' }}>Rooms &amp; Rates</h2>
                     {ROOMS.map((r, i) => (
                         <div key={i} className="flex flex-col sm:flex-row" style={{ borderBottom: '1px solid #eee', padding: '24px 0', gap: 20 }}>
