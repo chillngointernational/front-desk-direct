@@ -55,6 +55,186 @@ const WifiIco = () => (
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1a6b3c" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}><path d="M5 12.55a11 11 0 0 1 14.08 0" /><path d="M1.42 9a16 16 0 0 1 21.16 0" /><path d="M8.53 16.11a6 6 0 0 1 6.95 0" /><circle cx="12" cy="20" r="1" fill="#1a6b3c" /></svg>
 )
 
+/* ── Booking Widget ── */
+function BookingWidget() {
+    const [checkIn, setCheckIn] = useState('')
+    const [checkOut, setCheckOut] = useState('')
+    const [rooms, setRooms] = useState('1')
+    const [adults, setAdults] = useState('2')
+    const [kids, setKids] = useState('0')
+    const [status, setStatus] = useState('idle') // idle | searching | no-availability
+
+    const today = new Date().toISOString().split('T')[0]
+
+    const handleSearch = () => {
+        if (!checkIn || !checkOut) {
+            alert('Please select check-in and check-out dates.')
+            return
+        }
+        setStatus('searching')
+        setTimeout(() => setStatus('no-availability'), 2800)
+    }
+
+    const handleReset = () => {
+        setStatus('idle')
+        setCheckIn('')
+        setCheckOut('')
+    }
+
+    const inputStyle = {
+        width: '100%',
+        border: 'none',
+        background: 'transparent',
+        fontSize: 15,
+        fontWeight: 500,
+        color: '#333',
+        fontFamily: 'inherit',
+        outline: 'none',
+        cursor: 'pointer',
+        padding: 0,
+    }
+
+    const labelStyle = {
+        fontSize: 10,
+        fontWeight: 600,
+        color: '#888',
+        textTransform: 'uppercase',
+        letterSpacing: '.06em',
+        marginBottom: 4,
+    }
+
+    const cellStyle = (last) => ({
+        padding: '14px 16px',
+        borderRight: last ? 'none' : '1px solid #e4e0d8',
+        flex: 1,
+        minWidth: 0,
+    })
+
+    const selectStyle = {
+        ...inputStyle,
+        appearance: 'none',
+        WebkitAppearance: 'none',
+        backgroundImage: `url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23999' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E")`,
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'right 0 center',
+        paddingRight: 16,
+    }
+
+    return (
+        <div style={{ background: '#f8f6f2', borderTop: '1px solid #eae6e0', borderBottom: '1px solid #eae6e0' }}>
+            <div style={{ width: '100%', maxWidth: 1140, marginLeft: 'auto', marginRight: 'auto', paddingLeft: 24, paddingRight: 24, paddingTop: 24, paddingBottom: 24 }}>
+
+                {/* Search bar */}
+                <div style={{ background: '#fff', border: '1px solid #e0dcd6', borderRadius: 6, overflow: 'hidden' }}>
+                    <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+                        {/* Check-in */}
+                        <div style={cellStyle(false)} className="!w-full sm:!w-auto">
+                            <div style={labelStyle}>Check-in:</div>
+                            <input type="date" value={checkIn} onChange={e => { setCheckIn(e.target.value); setStatus('idle') }} min={today} style={inputStyle} />
+                        </div>
+                        {/* Check-out */}
+                        <div style={cellStyle(false)} className="!w-full sm:!w-auto">
+                            <div style={labelStyle}>Check-out:</div>
+                            <input type="date" value={checkOut} onChange={e => { setCheckOut(e.target.value); setStatus('idle') }} min={checkIn || today} style={inputStyle} />
+                        </div>
+                        {/* Rooms */}
+                        <div style={{ ...cellStyle(false), flex: '0 0 auto', width: 100 }} className="!w-1/3 sm:!w-[100px]">
+                            <div style={labelStyle}>Rooms:</div>
+                            <select value={rooms} onChange={e => setRooms(e.target.value)} style={selectStyle}>
+                                {[1, 2, 3, 4, 5].map(n => <option key={n} value={n}>{n}</option>)}
+                            </select>
+                        </div>
+                        {/* Adults */}
+                        <div style={{ ...cellStyle(false), flex: '0 0 auto', width: 100 }} className="!w-1/3 sm:!w-[100px]">
+                            <div style={labelStyle}>Adults:</div>
+                            <select value={adults} onChange={e => setAdults(e.target.value)} style={selectStyle}>
+                                {[1, 2, 3, 4, 5, 6].map(n => <option key={n} value={n}>{n}</option>)}
+                            </select>
+                        </div>
+                        {/* Kids */}
+                        <div style={{ ...cellStyle(false), flex: '0 0 auto', width: 100 }} className="!w-1/3 sm:!w-[100px]">
+                            <div style={labelStyle}>Kids:</div>
+                            <select value={kids} onChange={e => setKids(e.target.value)} style={selectStyle}>
+                                {[0, 1, 2, 3, 4].map(n => <option key={n} value={n}>{n}</option>)}
+                            </select>
+                        </div>
+                        {/* Button */}
+                        <div style={{ display: 'flex', alignItems: 'stretch' }}>
+                            <button
+                                onClick={handleSearch}
+                                disabled={status === 'searching'}
+                                style={{
+                                    background: status === 'searching' ? '#2a7d4e' : '#1a6b3c',
+                                    color: '#fff',
+                                    border: 'none',
+                                    fontSize: 13,
+                                    fontWeight: 700,
+                                    letterSpacing: '.08em',
+                                    textTransform: 'uppercase',
+                                    padding: '0 28px',
+                                    cursor: status === 'searching' ? 'wait' : 'pointer',
+                                    fontFamily: 'inherit',
+                                    whiteSpace: 'nowrap',
+                                    minHeight: 54,
+                                    transition: 'background .2s',
+                                }}
+                                onMouseEnter={e => { if (status !== 'searching') e.target.style.background = '#15592f' }}
+                                onMouseLeave={e => { if (status !== 'searching') e.target.style.background = '#1a6b3c' }}
+                            >
+                                {status === 'searching' ? 'Searching...' : 'Find Rooms'}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Loading state */}
+                {status === 'searching' && (
+                    <div style={{ textAlign: 'center', padding: '32px 0 12px' }}>
+                        <div style={{ display: 'inline-flex', alignItems: 'center', gap: 12 }}>
+                            {/* Spinner */}
+                            <svg width="20" height="20" viewBox="0 0 20 20" style={{ animation: 'spin 1s linear infinite' }}>
+                                <circle cx="10" cy="10" r="8" fill="none" stroke="#ddd" strokeWidth="2.5" />
+                                <circle cx="10" cy="10" r="8" fill="none" stroke="#1a6b3c" strokeWidth="2.5" strokeDasharray="50" strokeDashoffset="35" strokeLinecap="round" />
+                            </svg>
+                            <span style={{ fontSize: 14, color: '#888', fontWeight: 500 }}>Searching availability for {H}...</span>
+                        </div>
+                        <style>{`@keyframes spin { to { transform: rotate(360deg) } }`}</style>
+                    </div>
+                )}
+
+                {/* No availability result */}
+                {status === 'no-availability' && (
+                    <div style={{ background: '#fff', border: '1px solid #e0dcd6', borderRadius: 6, marginTop: 16, padding: '28px 24px', textAlign: 'center' }}>
+                        {/* X icon */}
+                        <div style={{ width: 44, height: 44, borderRadius: '50%', background: '#fef2f2', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', marginBottom: 14 }}>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#dc2626" strokeWidth="2" strokeLinecap="round"><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></svg>
+                        </div>
+                        <h3 style={{ fontSize: 17, fontWeight: 600, color: '#333', margin: '0 0 6px' }}>No Online Availability</h3>
+                        <p style={{ fontSize: 13, color: '#888', margin: '0 0 20px', maxWidth: 420, marginLeft: 'auto', marginRight: 'auto', lineHeight: 1.7 }}>
+                            We couldn't find online rates for your dates. Our reservation specialists may have access to exclusive rates not available online.
+                        </p>
+                        <a href={`tel:${PHONE}`} className="inline-flex items-center gap-2 no-underline hover:opacity-90 transition-opacity" style={{ background: '#1a6b3c', color: '#fff', fontSize: 13, fontWeight: 700, letterSpacing: '.06em', textTransform: 'uppercase', padding: '13px 28px', borderRadius: 4 }}>
+                            <PhIco size={16} /> Call for Availability — {PH}
+                        </a>
+                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 16, marginTop: 14, fontSize: 12, color: '#aaa' }}>
+                            <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}><ChkIco /> No fees</span>
+                            <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}><ChkIco /> Best rate guarantee</span>
+                            <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}><ChkIco /> Expert guidance</span>
+                        </div>
+                        <button onClick={handleReset} style={{ background: 'none', border: 'none', color: '#bbb', fontSize: 12, marginTop: 14, cursor: 'pointer', textDecoration: 'underline', fontFamily: 'inherit' }}>Search different dates</button>
+                    </div>
+                )}
+
+                {/* Disclosure */}
+                <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 12, color: '#aaa', marginTop: 14 }}>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ccc" strokeWidth="1.5" style={{ flexShrink: 0 }}><circle cx="12" cy="12" r="10" /><line x1="12" y1="16" x2="12" y2="12" /><line x1="12" y1="8" x2="12.01" y2="8" /></svg>
+                    <span><strong style={{ color: '#999' }}>Front Desk Direct</strong> is an independent reservation service dedicated exclusively to {H}. <a href="#faq" style={{ color: '#aaa' }}>Learn more</a></span>
+                </div>
+            </div>
+        </div>
+    )
+}
+
 export default function Fontainebleau() {
     const [faq, setFaq] = useState(null)
 
@@ -98,7 +278,7 @@ export default function Fontainebleau() {
                 </W>
             </div>
 
-            {/* Nav - BIGGER, more professional */}
+            {/* Nav */}
             <nav className="sticky top-0 z-50" style={{ background: '#fff', borderBottom: '1px solid #e8e4de', boxShadow: '0 1px 4px rgba(0,0,0,.06)' }}>
                 <W className="flex items-center justify-between" style={{ paddingTop: 14, paddingBottom: 14 }}>
                     <a href="/" className="no-underline flex items-center gap-3">
@@ -162,30 +342,8 @@ export default function Fontainebleau() {
                 </div>
             </W>
 
-            {/* Booking bar */}
-            <W className="pt-6 pb-4">
-                <div className="flex flex-col md:flex-row items-stretch" style={{ background: '#f4f1ec', border: '1px solid #e4e0d8', borderRadius: 4, overflow: 'hidden' }}>
-                    <div className="flex-1 grid grid-cols-2 md:grid-cols-4">
-                        {[{ l: 'Check-in:', v: 'Select date' }, { l: 'Check-out:', v: 'Select date' }, { l: 'Rooms:', v: '1' }, { l: 'Guests:', v: '2 Adults' }].map((f, i) => (
-                            <div key={i} className="px-3 md:px-4 py-3" style={{ borderRight: i < 3 ? '1px solid #e4e0d8' : 'none' }}>
-                                <div style={{ fontSize: 10, fontWeight: 600, color: '#888', marginBottom: 2, textTransform: 'uppercase', letterSpacing: '.04em' }}>{f.l}</div>
-                                <div style={{ fontSize: 14, fontWeight: 500, color: '#333' }}>{f.v}</div>
-                            </div>
-                        ))}
-                    </div>
-                    <a href={`tel:${PHONE}`} className="flex items-center justify-center gap-2 no-underline hover:opacity-90 transition-opacity px-6 py-3.5" style={{ background: '#1a6b3c', color: '#fff', fontSize: 13, fontWeight: 700, letterSpacing: '.06em', textTransform: 'uppercase', whiteSpace: 'nowrap' }}>
-                        <PhIco size={16} /> Call for Rates
-                    </a>
-                </div>
-            </W>
-
-            {/* Disclosure */}
-            <W className="pb-6">
-                <div style={{ display: 'flex', alignItems: 'flex-start', gap: 10, fontSize: 13, color: '#888' }}>
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#bbb" strokeWidth="1.5" style={{ flexShrink: 0, marginTop: 3 }}><circle cx="12" cy="12" r="10" /><line x1="12" y1="16" x2="12" y2="12" /><line x1="12" y1="8" x2="12.01" y2="8" /></svg>
-                    <span><strong style={{ color: '#666' }}>Front Desk Direct</strong> is an independent reservation service dedicated exclusively to {H}. <a href="#faq" style={{ color: '#888' }}>Learn more</a></span>
-                </div>
-            </W>
+            {/* ══ BOOKING WIDGET ══ */}
+            <BookingWidget />
 
             {/* Rooms */}
             <section id="rooms" style={{ borderTop: '1px solid #eae6e0' }}>
@@ -218,7 +376,7 @@ export default function Fontainebleau() {
 
             {/* About */}
             <section id="about" style={{ background: '#faf8f5', borderTop: '1px solid #eae6e0' }}>
-                <W style={{ paddingTop: 48, paddingBottom: 56 }}>
+                <W className="py-12">
                     <h2 style={{ fontSize: 22, fontWeight: 600, margin: '0 0 28px', color: '#1a1a1a' }}>About {H}</h2>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10">
                         <div className="md:col-span-2" style={{ fontSize: 14, lineHeight: 1.9, color: '#555' }}>
@@ -253,7 +411,7 @@ export default function Fontainebleau() {
 
             {/* Amenities */}
             <section style={{ borderTop: '1px solid #eae6e0' }}>
-                <W style={{ paddingTop: 48, paddingBottom: 56 }}>
+                <W className="py-12">
                     <h2 style={{ fontSize: 22, fontWeight: 600, margin: '0 0 24px', color: '#1a1a1a' }}>Amenities</h2>
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-10 gap-y-4">
                         {AMENITIES.map((a, i) => (
@@ -304,10 +462,9 @@ export default function Fontainebleau() {
                 </W>
             </section>
 
-            {/* Footer - FULL WIDTH distributed layout */}
+            {/* Footer */}
             <footer style={{ background: '#f0ece6', borderTop: '1px solid #e4dfd8' }}>
                 <W style={{ paddingTop: 48, paddingBottom: 48 }}>
-                    {/* Top row: Logo left, Links right */}
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: 24, marginBottom: 32 }}>
                         <div>
                             <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 12 }}>
@@ -337,8 +494,6 @@ export default function Fontainebleau() {
                             </div>
                         </div>
                     </div>
-
-                    {/* Divider */}
                     <div style={{ borderTop: '1px solid #e4dfd8', paddingTop: 24 }}>
                         <p style={{ fontSize: 11, lineHeight: 1.9, color: '#bbb', margin: '0 0 8px' }}>
                             Front Desk Direct is operated by Chill N Go International LLC.
@@ -351,7 +506,6 @@ export default function Fontainebleau() {
                 </W>
             </footer>
 
-            {/* Mobile bottom spacer */}
             <div className="h-16 md:hidden" />
         </div>
     )
