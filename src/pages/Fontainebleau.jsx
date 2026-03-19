@@ -53,8 +53,7 @@ export default function Fontainebleau() {
     const [faq, setFaq] = useState(null)
     useEffect(() => { window.scrollTo(0, 0); document.title = `${H} — Reservations | Front Desk Direct` }, [])
 
-    const W = ({ children, className = '', narrow, style: s }) => <div className={`w-full mx-auto px-4 sm:px-6 md:px-10 lg:px-16 ${narrow ? 'max-w-[820px]' : 'max-w-[1140px]'} ${className}`} style={s}>{children}</div>
-
+    const W = ({ children, className = '', narrow, style: s }) => <div style={{ width: '100%', maxWidth: narrow ? 820 : 1140, marginLeft: 'auto', marginRight: 'auto', paddingLeft: 20, paddingRight: 20, ...s }} className={className}>{children}</div>
     return (
         <div style={{ background: '#fff', color: '#333', fontFamily: "'Libre Franklin',-apple-system,sans-serif", fontSize: 14, lineHeight: 1.6 }} className="min-h-screen">
 
