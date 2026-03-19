@@ -358,29 +358,26 @@ export default function Fontainebleau() {
                 </W>
             </section>
 
-            <section id="faq" style={{ background: '#faf8f5', borderTop: '1px solid #eae6e0' }}>
-                <W className="py-12" narrow>
-                    <h2 style={{ fontSize: 22, fontWeight: 600, margin: '0 0 24px', color: '#1a1a1a' }}>Frequently Asked Questions</h2>
-                    {FAQS.map((f, i) => (
-                        <div key={i} style={{ borderBottom: '1px solid #e4dfd8' }}>
-                            <button onClick={() => setFaq(faq === i ? null : i)} className="w-full text-left flex items-center justify-between gap-4 cursor-pointer" style={{ background: 'none', border: 'none', padding: '16px 0', fontSize: 14, fontWeight: 600, color: '#333', fontFamily: 'inherit' }}>
-                                <span>{f.q}</span>
-                                <span style={{ width: 24, height: 24, borderRadius: '50%', border: '1px solid #ddd', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 15, color: '#bbb', flexShrink: 0, transition: 'transform .2s', transform: faq === i ? 'rotate(45deg)' : 'none' }}>+</span>
-                            </button>
-                            {faq === i && <div style={{ paddingBottom: 20, fontSize: 13, lineHeight: 1.85, color: '#777', paddingRight: 40 }}>{f.a}</div>}
+            <section id="faq" style={{ borderTop: '1px solid #eae6e0', background: '#faf8f5' }}>
+                <div style={{ width: '100%', maxWidth: 820, marginLeft: 'auto', marginRight: 'auto', paddingLeft: 24, paddingRight: 24, paddingTop: 28, paddingBottom: 28 }}>
+                    <details>
+                        <summary style={{ fontSize: 18, fontWeight: 600, color: '#1a1a1a', cursor: 'pointer', listStyle: 'none', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                            <span>Frequently Asked Questions</span>
+                            <span style={{ fontSize: 20, color: '#bbb', fontWeight: 400 }}>+</span>
+                        </summary>
+                        <div style={{ marginTop: 20 }}>
+                            {FAQS.map((f, i) => (
+                                <details key={i} style={{ borderBottom: '1px solid #e4dfd8' }}>
+                                    <summary style={{ padding: '14px 0', fontSize: 14, fontWeight: 600, color: '#333', cursor: 'pointer', listStyle: 'none', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 16 }}>
+                                        <span>{f.q}</span>
+                                        <span style={{ fontSize: 16, color: '#bbb', flexShrink: 0 }}>+</span>
+                                    </summary>
+                                    <div style={{ paddingBottom: 16, fontSize: 13, lineHeight: 1.85, color: '#777', paddingRight: 36 }}>{f.a}</div>
+                                </details>
+                            ))}
                         </div>
-                    ))}
-                </W>
-            </section>
-
-            <section style={{ borderTop: '1px solid #eae6e0' }}>
-                <W style={{ paddingTop: 48, paddingBottom: 56 }}>
-                    <h2 style={{ fontSize: 22, fontWeight: 600, margin: '0 0 6px', color: '#1a1a1a' }}>Location</h2>
-                    <p style={{ fontSize: 13, color: '#aaa', margin: '0 0 20px' }}>{ADDR}</p>
-                    <div style={{ width: '100%', height: 350, border: '1px solid #eae6e0', borderRadius: 6, overflow: 'hidden' }}>
-                        <iframe title="Map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3590.5!2d-80.1203!3d25.8199!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88d9b4a4674dca6f%3A0x52c4c2c2b2f75c5!2sFontainebleau%20Miami%20Beach!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus" width="100%" height="100%" style={{ border: 0 }} allowFullScreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade" />
-                    </div>
-                </W>
+                    </details>
+                </div>
             </section>
 
             <footer style={{ background: '#f0ece6', borderTop: '1px solid #e4dfd8' }}>
