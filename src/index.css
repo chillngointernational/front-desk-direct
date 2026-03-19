@@ -20,3 +20,7 @@ body {
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
 }
+
+#root {
+  width: 100%;
+}
